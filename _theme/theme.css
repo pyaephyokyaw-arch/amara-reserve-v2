@@ -1,0 +1,126 @@
+/* Project theme override — layered on top of the shadcn/ui token defaults.
+   Warm amber primary (hue 63.9), Geist body / Onest headings, 0.75rem radius,
+   warm-tinted shadow ramp. Load AFTER the design-system stylesheets. */
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.25 0.031 63.9);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.25 0.031 63.9);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.25 0.031 63.9);
+  --primary: #BF854C;
+  --primary-foreground: oklch(0.25 0.031 63.9);
+  --secondary: oklch(0.955 0.01 63.9);
+  --secondary-foreground: oklch(0.25 0.051 63.9);
+  --muted: oklch(0.97 0.002 63.9);
+  --muted-foreground: oklch(0.52 0.021 63.9);
+  --accent: oklch(0.965 0.003 63.9);
+  --accent-foreground: oklch(0.25 0.031 63.9);
+  --destructive: oklch(0.584 0.239 28.5);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.925 0.005 63.9);
+  --input: oklch(0.925 0.005 63.9);
+  --ring: #BF854C;
+
+  --chart-1: oklch(0.25 0.103 63.9);
+  --chart-2: oklch(0.35 0.103 63.9);
+  --chart-3: oklch(0.55 0.103 63.9);
+  --chart-4: oklch(0.75 0.103 63.9);
+  --chart-5: oklch(0.85 0.103 63.9);
+
+  --sidebar: oklch(0.984 0.002 63.9);
+  --sidebar-foreground: oklch(0.25 0.031 63.9);
+  --sidebar-primary: #BF854C;
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.965 0.003 63.9);
+  --sidebar-accent-foreground: oklch(0.25 0.031 63.9);
+  --sidebar-border: oklch(0.925 0.005 63.9);
+  --sidebar-ring: oklch(0.925 0.005 63.9);
+
+  --selection: #BF854C;
+  --selection-foreground: oklch(1 0 0);
+  --surface: oklch(0.98 0.002 63.9);
+  --surface-foreground: var(--foreground);
+
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Onest", var(--font-sans);
+
+  --radius: 0.75rem;
+  --radius-xs: calc(var(--radius) - 8px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --radius-full: 9999px;
+
+  --shadow-2xs: 0 1px 0 0 oklch(0.55 0.015 63.9 / 0.05);
+  --shadow-xs: 0 1px 2px 0 oklch(0.55 0.015 63.9 / 0.05);
+  --shadow-sm: 0 1px 3px 0 oklch(0.55 0.015 63.9 / 0.1), 0 1px 2px -1px oklch(0.55 0.015 63.9 / 0.1);
+  --shadow-md: 0 4px 6px -1px oklch(0.55 0.015 63.9 / 0.1), 0 2px 4px -2px oklch(0.55 0.015 63.9 / 0.1);
+  --shadow-lg: 0 10px 15px -3px oklch(0.55 0.015 63.9 / 0.1), 0 4px 6px -4px oklch(0.55 0.015 63.9 / 0.1);
+  --shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.1), 0 8px 10px -6px oklch(0.55 0.015 63.9 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px oklch(0.55 0.015 63.9 / 0.15);
+}
+
+/* The page toggle writes data-theme="dark" on <html>; the design system's own
+   components and the inverted bands use class="dark". Both drive the same tokens. */
+.dark,
+[data-theme="dark"] {
+  --background: oklch(0.15 0.01 63.9);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.17 0.01 63.9);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.18 0.01 63.9);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: #BF854C;
+  --primary-foreground: oklch(0.2 0.02 63.9);
+  --secondary: oklch(0.743 0.103 63.9 / 0.25);
+  --secondary-foreground: oklch(0.9 0.103 63.9);
+  --muted: oklch(0.25 0.007 63.9);
+  --muted-foreground: oklch(0.75 0.015 63.9);
+  --accent: oklch(0.38 0.01 63.9);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.69 0.2 23.9);
+  --destructive-foreground: oklch(0 0 0);
+  --border: oklch(0.29 0.007 63.9);
+  --input: oklch(0.29 0.007 63.9);
+  --ring: #BF854C;
+
+  --chart-1: oklch(0.35 0.103 63.9);
+  --chart-2: oklch(0.55 0.103 63.9);
+  --chart-3: oklch(0.75 0.103 63.9);
+  --chart-4: oklch(0.9 0.103 63.9);
+  --chart-5: oklch(0.99 0.103 63.9);
+
+  --sidebar: oklch(0.11 0.007 63.9);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(1 0 0);
+  --sidebar-primary-foreground: oklch(0.2 0.007 63.9);
+  --sidebar-accent: oklch(0.24 0.007 63.9);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.28 0.007 63.9);
+  --sidebar-ring: #BF854C;
+
+  --selection: oklch(0.98 0 0);
+  --selection-foreground: oklch(0.2 0.007 63.9);
+  --surface: oklch(0.2 0.01 63.9);
+  --surface-foreground: oklch(0.75 0.015 63.9);
+
+  --shadow-2xs: 0 1px 3px 0 hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0 1px 3px 0 hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow-md: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+  --shadow-lg: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+  --shadow-xl: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+  --shadow-2xl: 0 1px 3px 0 hsl(0 0% 0% / 0.25);
+}
+
+/* Onest carries the headings; Geist everything else. */
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
+[data-slot="button"] { border-radius: var(--radius-full); }
+
+/* In page-dark mode the inverted bands would otherwise disappear into the page.
+   Lift them to the card surface so they stay legible as distinct panels. */
+[data-theme="dark"] .dark { --background: oklch(0.19 0.01 63.9); }

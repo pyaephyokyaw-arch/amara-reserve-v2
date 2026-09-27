@@ -1,0 +1,21 @@
+/* shadcn/ui ships no webfont — the registry inherits the host app's fonts.
+   Defaults below are the Tailwind v4 system stacks (what a fresh install renders with). */
+:root {
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-heading: var(--font-sans);
+
+  /* Tailwind type scale used across components */
+  --text-xs: 0.75rem;    --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;   --text-sm--line-height: 1.25rem;
+  --text-base: 1rem;     --text-base--line-height: 1.5rem;
+  --text-lg: 1.125rem;   --text-lg--line-height: 1.75rem;
+  --text-xl: 1.25rem;    --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.5rem;    --text-2xl--line-height: 2rem;
+  --text-3xl: 1.875rem;  --text-3xl--line-height: 2.25rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}

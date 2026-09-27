@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Amara Reserve | Information Architecture and Visa User Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Onest:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<script src="./doc-page.js"></script>
+<style>
+  doc-page:not(:defined){visibility:hidden}
+  a{color:#8A5A2B;text-decoration:underline;text-underline-offset:3px}
+  a:hover{color:#2C1E11}
+</style>
+</helmet>
+<doc-page size="a4" margin="0.7in">
+  <div slot="header" style="display:flex;justify-content:space-between;gap:16px;font-family:Geist,sans-serif;font-size:10px;letter-spacing:0.04em;color:#72675D;padding-bottom:8px;border-bottom:1px solid #E9E5E3">
+    <span>Amara Reserve · Information Architecture and Visa User Flow</span>
+    <span>Draft v2 · 27 September 2026</span>
+  </div>
+  <div slot="footer" style="display:flex;justify-content:space-between;gap:16px;font-family:Geist,sans-serif;font-size:10px;color:#72675D;padding-top:8px;border-top:1px solid #E9E5E3">
+    <span>Fluxion Technology</span>
+    <span>Confidential, for internal review</span>
+  </div>
+
+  <div style="font-family:Geist,system-ui,sans-serif;font-size:13.5px;line-height:1.6;color:#2C1E11">
+
+    <div style="padding:8px 0 28px;border-bottom:2px solid #BF854C;margin-bottom:28px">
+      <img src="./assets/amara-logo-dark.svg" alt="Amara Reserve" style="height:44px;width:auto;display:block;margin-bottom:36px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#8A5A2B;margin-bottom:10px">Fluxion Technology · Section 1 business proposal</div>
+      <h1 style="font-family:Onest,sans-serif;font-size:34px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;margin:0 0 10px">Information Architecture and Visa User Flow</h1>
+      <p style="margin:0 0 24px;font-size:15px;color:#72675D">Amara Reserve website. Experiences marketplace for travellers from Myanmar to Thailand.</p>
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;font-size:12px">
+        <div><div style="color:#72675D">Prepared for</div><div style="font-weight:600">Aye Myat Thuzar, Business Solution Manager</div></div>
+        <div><div style="color:#72675D">Site reviewed</div><div style="font-weight:600">amara-reserve.vercel.app</div></div>
+        <div><div style="color:#72675D">Date</div><div style="font-weight:600">27 September 2026</div></div>
+        <div><div style="color:#72675D">Status</div><div style="font-weight:600">Draft v2 for review</div></div>
+      </div>
+    </div>
+
+    <div style="break-inside:avoid;margin-bottom:8px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#72675D;margin-bottom:8px">Contents</div>
+      <ol style="margin:0;padding-left:20px;column-count:2;column-gap:32px;font-size:13px;line-height:1.9">
+        <li>Overview</li><li>Confirmed decisions</li><li>Changes in this version</li><li>Sitemap</li><li>Experiences menu</li><li>Global navigation</li><li>Home page structure</li><li>Page templates</li><li>Visa content</li><li>Visa user flow</li><li>Visa chooser logic</li><li>Inquiry status lifecycle</li><li>Risks and gaps</li>
+      </ol>
+    </div>
+
+    <h2 style="font-family:Onest,sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:36px 0 8px"><span style="color:#BF854C;margin-right:8px">1</span>Overview</h2>
+    <p style="margin:0 0 10px">The site is inquiry first. A visitor picks an experience and sends a short inquiry with no payment and no account. A coordinator sends a quote. The customer registers, pays, then completes documents.</p>
+    <p style="margin:0 0 10px">This IA applies the six category Experiences menu with a maximum of four items in each category. Add on services (Airport pickup, Hotel) are shown on the service detail page, not in the menu.</p>
+
+    <h2 style="font-family:Onest,sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:36px 0 8px"><span style="color:#BF854C;margin-right:8px">2</span>Confirmed decisions</h2>
+    <p style="margin:0 0 10px;color:#72675D">Confirmed 25 and 27 September 2026. These are fixed in the sitemap and flows below.</p>
+    <ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px">
+      <li><strong>Six experience categories.</strong> Visa Service, Medical, Aesthetics, Wellness, Leisure, Transport Services. The stats bar shows 6 categories.</li>
+      <li><strong>Menu label is "Experiences".</strong> Each category shows a maximum of 4 items. Add ons appear only on the service detail page.</li>
+      <li><strong>Aesthetics menu.</strong> Partner Clinics, Clinical Appointment, Facial &amp; Body Treatments, Post-Treatment Aftercare. Partner Clinics lists each licensed clinic with its location and published rates, matching Partner Hospitals under Medical. Spa appears only under Wellness.</li>
+      <li><strong>Visa Service scope.</strong> Tourist Visa, Education Visa and Visa Extension. Education Visa opens a sub menu of five programmes. DTV and 90 day reporting are removed from the site.</li>
+      <li><strong>Leisure menu.</strong> Nature &amp; Escape, Culture &amp; Craft, Taste of Thailand, Movement &amp; Mastery.</li>
+      <li><strong>Short inquiry form.</strong> Name, email, phone, experience type and message. No Terms step before sign in.</li>
+      <li><strong>Payment happens after the customer registers.</strong> Guests can browse and send an inquiry. To accept a quote and pay, the customer creates an account or signs in, and accepts the Terms at that point.</li>
+      <li><strong>Payment methods.</strong> PromptPay, Visa, Mastercard and KBZPay. Shown on the payment step and in Help Center, Fees and payment.</li>
+      <li><strong>Languages.</strong> English and Myanmar.</li>
+      <li><strong>Transport Services is a new category.</strong> Airport &amp; Hotel Transfers, Intercity Transfers, Private Car with Driver, Car Rental.</li>
+    </ol>
+
+    <h2 style="font-family:Onest,sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:36px 0 8px"><span style="color:#BF854C;margin-right:8px">3</span>Changes in this version</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:12.5px;line-height:1.5;margin:12px 0 4px">
+      <thead><tr>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px;width:22%">Item</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px;width:39%">Draft v1 (25 Sep)</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px">Draft v2 (this version)</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Product name</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">Service Hub</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Amara Reserve</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Menu label</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">Services</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Experiences</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Education Visa</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">Single menu item</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Dropdown with five programmes as a sub menu</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Leisure</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">Tour Packages, Admission Tickets, Shows &amp; Entertainment, Dinner Cruise</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Nature &amp; Escape, Culture &amp; Craft, Taste of Thailand, Movement &amp; Mastery</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Inquiry</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">Three steps: add ons, Terms, ten field contact form</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">One short form with five fields. Add ons chosen on the service page. Terms accepted at sign in.</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Languages</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">English, Myanmar, Thai</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">English, Myanmar</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Add ons</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">Per service</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Airport pickup and Hotel offered on every service detail page</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Mobile menu</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">Accordion</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Accordion with nested Education Visa, pinned bottom bar. Tablet opens a side panel.</td></tr>
+      </tbody>
+    </table>
+
+    <h2 style="font-family:Onest,sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:36px 0 8px"><span style="color:#BF854C;margin-right:8px">4</span>Sitemap</h2>
+    <p style="margin:0 0 10px">Eight top level areas. The Experiences catalog opens as one mega menu, which keeps the desktop nav bar short at 1280px screen width.</p>
+    <table style="width:100%;border-collapse:collapse;font-size:12.5px;line-height:1.5;margin:12px 0 4px">
+      <thead><tr>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px;width:8%">ID</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px;width:26%">Area</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px">Pages</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">0</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Home</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Landing page</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">1</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Experiences catalog</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Mega menu with 6 categories (see section 5)</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">2</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Search results</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Results by query, empty state with ask a question</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">3</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Inquiry</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">3.1 Inquiry form (short)<br>3.2 Inquiry received<br>3.3 Sign in or create account, accept Terms<br>3.4 Payment (registered customers)<br>3.5 Complete details and documents</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">4</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Insider Notes</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">4.1 Myanmar restaurants<br>4.2 Attractions<br>4.3 Travel guide<br>4.4 Living in Thailand<br>4.5 Community board<br>4.6 News &amp; festivals (proposed)</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">5</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Help Center</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Search help, topics and FAQ, fees and payment, contact a coordinator</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">6</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Account</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Sign in / Create account, Profile, My Inquiries, Wishlist, Notifications</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">7</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Legal (footer, proposed)</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Terms of service, Privacy notice (PDPA), Cookie settings, Agent disclosure</td></tr>
+      </tbody>
+    </table>
+
+    <h2 style="font-family:Onest,sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:36px 0 8px"><span style="color:#BF854C;margin-right:8px">5</span>Experiences menu</h2>
+    <p style="margin:0 0 10px">Six categories, maximum four items each. The category title links to the category page. Each item links to its service detail page. Education Visa opens a sub menu.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0 4px">
+      <div style="break-inside:avoid;border:1px solid #E9E5E3;border-radius:10px;padding:12px 14px">
+        <div style="font-size:11px;font-weight:600;color:#8A5A2B">1.1</div>
+        <div style="font-family:Onest,sans-serif;font-weight:600;font-size:14px;margin-bottom:6px">Visa Service</div>
+        <div style="font-size:12.5px;line-height:1.7">Tourist Visa<br>Education Visa ▾</div>
+        <div style="font-size:12px;line-height:1.6;color:#72675D;margin:2px 0 2px 4px;padding-left:10px;border-left:2px solid #BF854C">Language School<br>Culinary &amp; Cooking School<br>Hotel &amp; Restaurant Training<br>Premium University<br>International School</div>
+        <div style="font-size:12.5px;line-height:1.7">Visa Extension</div>
+      </div>
+      <div style="break-inside:avoid;border:1px solid #E9E5E3;border-radius:10px;padding:12px 14px">
+        <div style="font-size:11px;font-weight:600;color:#8A5A2B">1.2</div>
+        <div style="font-family:Onest,sans-serif;font-weight:600;font-size:14px;margin-bottom:6px">Medical</div>
+        <div style="font-size:12.5px;line-height:1.7">Health Checkup Packages<br>Hospital Appointment<br>Special Treatment<br>Partner Hospitals</div>
+      </div>
+      <div style="break-inside:avoid;border:1px solid #E9E5E3;border-radius:10px;padding:12px 14px">
+        <div style="font-size:11px;font-weight:600;color:#8A5A2B">1.3</div>
+        <div style="font-family:Onest,sans-serif;font-weight:600;font-size:14px;margin-bottom:6px">Aesthetics</div>
+        <div style="font-size:12.5px;line-height:1.7">Partner Clinics<br>Clinical Appointment<br>Facial &amp; Body Treatments<br>Post-Treatment Aftercare</div>
+      </div>
+      <div style="break-inside:avoid;border:1px solid #E9E5E3;border-radius:10px;padding:12px 14px">
+        <div style="font-size:11px;font-weight:600;color:#8A5A2B">1.4</div>
+        <div style="font-family:Onest,sans-serif;font-weight:600;font-size:14px;margin-bottom:6px">Wellness</div>
+        <div style="font-size:12.5px;line-height:1.7">Facial Glow &amp; Hydration<br>Nail &amp; Skin Care<br>Spa &amp; Body Massage<br>Personal Color Analysis</div>
+      </div>
+      <div style="break-inside:avoid;border:1px solid #E9E5E3;border-radius:10px;padding:12px 14px">
+        <div style="font-size:11px;font-weight:600;color:#8A5A2B">1.5</div>
+        <div style="font-family:Onest,sans-serif;font-weight:600;font-size:14px;margin-bottom:6px">Leisure</div>
+        <div style="font-size:12.5px;line-height:1.7">Nature &amp; Escape<br>Culture &amp; Craft<br>Taste of Thailand<br>Movement &amp; Mastery</div>
+      </div>
+      <div style="break-inside:avoid;border:1px solid #E9E5E3;border-radius:10px;padding:12px 14px">
+        <div style="font-size:11px;font-weight:600;color:#8A5A2B">1.6 · New</div>
+        <div style="font-family:Onest,sans-serif;font-weight:600;font-size:14px;margin-bottom:6px">Transport Services</div>
+        <div style="font-size:12.5px;line-height:1.7">Airport &amp; Hotel Transfers<br>Intercity Transfers<br>Private Car with Driver<br>Car Rental</div>
+      </div>
+    </div>
+    <p style="margin:8px 0 10px;font-size:12px;color:#72675D">Global add ons on every service detail page: Airport pickup, Hotel.</p>
+
+    <h2 style="font-family:Onest,sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:36px 0 8px"><span style="color:#BF854C;margin-right:8px">6</span>Global navigation</h2>
+    <p style="margin:0 0 10px">Same header on every page. Items in reading order, left to right.</p>
+    <table style="width:100%;border-collapse:collapse;font-size:12.5px;line-height:1.5;margin:12px 0 4px">
+      <thead><tr>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px;width:26%">Element</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px">Behaviour</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px;width:12%">Status</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Logo</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Returns to Home. Dark lettering on light pages, white on dark, bronze A and star.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#BF854C;color:#2C1E11">Change</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Experiences</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Mega menu, 6 category columns, max 4 items each, Education Visa sub menu</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#BF854C;color:#2C1E11">Change</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Insider Notes</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Opens Insider Notes landing with tabs 4.1 to 4.6</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#F5EFE9;color:#72675D">Keep</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Help Center</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Opens Help search</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#F5EFE9;color:#72675D">Keep</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Language</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">English, Myanmar. Remembers the choice per visitor.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#BF854C;color:#2C1E11">Change</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Saved (heart with count)</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Opens Wishlist. Asks guests to sign in to save across devices.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#F5EFE9;color:#72675D">Keep</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Theme toggle</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Light or dark</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#F5EFE9;color:#72675D">Keep</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Notifications (signed in)</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Inquiry status changes, coordinator replies, document reminders</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#F5EFE9;color:#72675D">Keep</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Account menu (signed in)</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Profile, Wishlist, My Inquiries, Help, Log out</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#F5EFE9;color:#72675D">Keep</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Send an inquiry</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Primary button, opens the short inquiry form with no experience preselected</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#F5EFE9;color:#72675D">Keep</span></td></tr>
+      </tbody>
+    </table>
+    <h3 style="font-family:Onest,sans-serif;font-size:15px;font-weight:600;margin:22px 0 6px">Tablet and mobile navigation</h3>
+    <p style="margin:0 0 10px">Below 1024px a menu button replaces Experiences, Insider Notes, Help and Sign in. Tablet opens a 420px side panel over a dimmed page. Phone opens full screen and also takes language, theme and Send an inquiry.</p>
+    <p style="margin:0 0 10px">The panel is an accordion: Experiences (6 categories expand to their items, Education Visa expands one level deeper), Insider Notes, Help Center, Sign in. A pinned bottom bar holds language, theme and a full width Send an inquiry button. All rows are at least 44px tall.</p>
+
+    <h2 style="font-family:Onest,sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:36px 0 8px"><span style="color:#BF854C;margin-right:8px">7</span>Home page structure</h2>
+    <p style="margin:0 0 10px">Top to bottom, with changes agreed or proposed after the 22 Sep meeting.</p>
+    <table style="width:100%;border-collapse:collapse;font-size:12.5px;line-height:1.5;margin:12px 0 4px">
+      <thead><tr>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px;width:5%">#</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px;width:22%">Section</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px">Content</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px;width:12%">Status</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">1</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Hero</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Video, eyebrow "Bangkok, Chiang Mai, Nationwide", headline "The Art of Pleasant Journeys and Total Serenity Harmony.", current sub headline, search bar, quick chips. Remains the same as the live site.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#F5EFE9;color:#72675D">Keep</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">2</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Experience gallery</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">One tile per category with experience count. Update to 6 tiles.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#BF854C;color:#2C1E11">Change</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">3</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">How it works</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Tell us, get a quote, register and pay, send documents, we handle it</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#F5EFE9;color:#72675D">Keep</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">4</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Stats bar</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">62 experiences listed, 6 categories, 2 languages, under 15 mins quick inquiry reply. Replaces "92% answers same day".</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#BF854C;color:#2C1E11">Change</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">5</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Top Picks (Customer Favorites)</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Cards for day trips and admission tickets: image, category, name, area, duration, price from, badge. Card opens the service page.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#2C1E11;color:#FFFFFF">New</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">6</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Reviews and "What clients say"</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Both review blocks on the live site</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:0 7px;border-radius:999px;font-size:11px;font-weight:600;border:1px solid #D8CFC6;color:#72675D">Remove</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">7</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Insider Notes teaser</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Restaurants, attractions, travel guide entry points</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#F5EFE9;color:#72675D">Keep</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">8</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Gallery</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Replace the passport photo as agreed on 22 Sep</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#BF854C;color:#2C1E11">Change</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">9</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Final CTA "Tell us what you need"</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Send an inquiry, Read the Help Center. Sits above the FAQ.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#BF854C;color:#2C1E11">Change</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">10</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">FAQ "Before you send an inquiry"</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Short answers, link to Help Center</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#F5EFE9;color:#72675D">Keep</span></td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#8A5A2B;font-weight:600">11</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Footer</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Experiences, Insider Notes, Help, Company, Legal links, "Social media channel" icons, copyright Bangkok</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top"><span style="display:inline-block;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;background:#BF854C;color:#2C1E11">Change</span></td></tr>
+      </tbody>
+    </table>
+
+    <h2 style="font-family:Onest,sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:36px 0 8px"><span style="color:#BF854C;margin-right:8px">8</span>Page templates</h2>
+    <p style="margin:0 0 10px">Six templates cover every page. Content blocks are listed in reading order.</p>
+    <table style="width:100%;border-collapse:collapse;font-size:12.5px;line-height:1.5;margin:12px 0 4px">
+      <thead><tr>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px;width:20%">Template</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px;width:14%">Used by</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px">Content blocks</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Category page</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">1.1 to 1.6</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Breadcrumb, title and blurb, sub category tabs (the menu items), In demand ranking, grouped experience cards with price from, "Not sure? Ask a question", sponsored slot</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Service detail page</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Every menu item</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Breadcrumb, name and description, What is included, What we need from you, Good to know FAQ, package selector with quantity, add ons (Airport pickup, Hotel) with running total, price panel with key facts, "Start inquiry", "No payment now", related experiences</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Search results</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">2</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Result count, query echo, experience cards, empty state with ask a question</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Inquiry steps</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">3.1 to 3.5</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Short inquiry form with selected experience, confirmation with reference number, sign in with Terms, payment, complete details form</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Insider Notes page</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">4.1 to 4.6</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Tabs, filters, cards. Restaurants add "Picked for you" when signed in and "Suggest a place".</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Account page</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">6</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Profile summary, account details, My Inquiries with status, Wishlist, empty states that link to Experiences</td></tr>
+      </tbody>
+    </table>
+    <h3 style="font-family:Onest,sans-serif;font-size:15px;font-weight:600;margin:22px 0 6px">Inquiry form fields (3.1)</h3>
+    <p style="margin:0 0 10px">Full name, email, phone, experience type, message. No Terms tick and no account needed. Passport details stay out of this first form, so visitors can ask without sharing sensitive data.</p>
+    <h3 style="font-family:Onest,sans-serif;font-size:15px;font-weight:600;margin:22px 0 6px">Sign in and Terms (3.3)</h3>
+    <p style="margin:0 0 10px">Shown when the customer accepts a quote. Create an account or sign in, then accept the Terms of service and Privacy notice before payment.</p>
+    <h3 style="font-family:Onest,sans-serif;font-size:15px;font-weight:600;margin:22px 0 6px">Payment step (3.4)</h3>
+    <p style="margin:0 0 10px">Shown only to registered, signed in customers who accepted the quote. Methods: PromptPay, Visa, Mastercard, KBZPay. Card payments go through a PCI DSS compliant payment gateway, so card numbers never touch Amara Reserve servers.</p>
+    <h3 style="font-family:Onest,sans-serif;font-size:15px;font-weight:600;margin:22px 0 6px">Complete details form (3.5)</h3>
+    <p style="margin:0 0 10px">Full name as in passport, date of birth, nationality, current status in Thailand, arrival date, passport expiry, length of stay, number of people, passport upload, appointment date, add ons, anything else.</p>
+
+    <h2 style="font-family:Onest,sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:36px 0 8px"><span style="color:#BF854C;margin-right:8px">9</span>Visa content</h2>
+    <p style="margin:0 0 10px">Three service pages. The customer sees the processing time. Internal notes are for coordinators and Help Center answers only, not shown on the package card.</p>
+    <h3 style="font-family:Onest,sans-serif;font-size:15px;font-weight:600;margin:22px 0 6px">1.1.1 Tourist Visa</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:12px;line-height:1.5;margin:10px 0 4px">
+      <thead><tr>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;width:24%">Package</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600">Description</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;width:14%">Processing</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;width:24%;color:#72675D">Internal note</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Single-Entry Tourist Visa (Single TR)</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">For short term travellers entering Thailand once. Initial stay up to 60 days, can be extended locally.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">5 to 10 working days</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">Document review 3 to 5 days, e-Visa approval 2 to 5 days</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Multiple-Entry Tourist Visa (Multi TR)</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">For frequent travellers. Valid for 6 months, stay up to 60 days per entry.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">5 to 10 working days</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">Document review 3 to 5 days, e-Visa approval 2 to 5 days</td></tr>
+      </tbody>
+    </table>
+    <h3 style="font-family:Onest,sans-serif;font-size:15px;font-weight:600;margin:22px 0 6px">1.1.2 Education Visa (ED Visa Programs)</h3>
+    <p style="margin:0 0 10px">Renamed from "ED Visa, Thai Language School". LTR and TR packages are removed from this page. Each programme is a sub menu item. Descriptions and reference images for new items are pending.</p>
+    <table style="width:100%;border-collapse:collapse;font-size:12px;line-height:1.5;margin:10px 0 4px">
+      <thead><tr>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;width:24%">Package</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600">Description</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;width:14%">Processing</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;width:24%;color:#72675D">Internal note</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">ED Visa, Language School (English, Thai, Chinese)</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">For adults studying non formal courses at private language or culture centres.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">30 to 45 working days</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">Ministry approval 20 to 30 days, immigration stamp 10 to 15 days</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">ED Visa, Culinary &amp; Cooking School</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">For adult students in long term professional culinary, baking or Thai chef programs.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">30 to 45 working days</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">Ministry approval 20 to 30 days, immigration stamp 10 to 15 days</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">ED Visa, Hotel and Restaurant Training</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">For long term stays with certified vocational training in hospitality, culinary arts and service management.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">30 to 45 working days</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">Ministry approval 20 to 30 days, immigration stamp 10 to 15 days</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">ED Visa, Premium University</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">For international university students. Extended stay during the degree plus up to one year after graduation.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">15 to 25 working days</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">University approval 10 to 15 days, embassy or immigration stamp 5 to 10 days</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">ED Visa, International School</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">For students aged 3 to 18 at accredited international schools. Parents can apply for a guardian visa at the same time.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">20 to 30 working days</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">School clearance 15 to 20 days, immigration 5 to 10 days. Student and guardian processed together.</td></tr>
+      </tbody>
+    </table>
+    <h3 style="font-family:Onest,sans-serif;font-size:15px;font-weight:600;margin:22px 0 6px">1.1.3 Visa Extension</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:12px;line-height:1.5;margin:10px 0 4px">
+      <thead><tr>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;width:24%">Package</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600">Description</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;width:14%">Processing</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;width:24%;color:#72675D">Internal note</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">Tourist Visa Extension (30 Days)</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Lets eligible tourists stay 30 more days without leaving Thailand.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">1 to 3 working days</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">To be confirmed</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;font-weight:600">ED Visa Extension (90 Days / 1 Year)</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">Extends stay for active students and trainees, based on approved school or university documents.</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top">1 to 3 working days</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;vertical-align:top;color:#72675D">Document preparation 1 to 2 days, Immigration Bureau submission same day</td></tr>
+      </tbody>
+    </table>
+
+    <h2 style="font-family:Onest,sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:36px 0 8px;break-before:page"><span style="color:#BF854C;margin-right:8px">10</span>Visa user flow</h2>
+    <p style="margin:0 0 10px">From first visit to visa issued. Touch 1, 2 and 3 are the three touch follow up promise attached to the headline "We are always here for you".</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;font-size:11px;color:#72675D;margin:4px 0 14px">
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:18px;height:10px;border-radius:999px;background:#2C1E11"></span>Start or end</span>
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:18px;height:10px;border-radius:3px;border:1px solid #D8CFC6;background:#fff"></span>Step</span>
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:18px;height:10px;border-radius:3px;border:1px dashed #BF854C;background:#F5EFE9"></span>Decision</span>
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:18px;height:10px;border-radius:3px;background:#BF854C"></span>Follow up touch</span>
+      <span style="display:flex;align-items:center;gap:6px"><span style="width:18px;height:10px;border-radius:3px;border:2px solid #2C1E11"></span>Payment</span>
+    </div>
+
+    <figure style="margin:0 0 18px;border:1px solid #E9E5E3;border-radius:12px;padding:18px 20px 16px;font-size:12px;line-height:1.4">
+      <div style="font-family:Onest,sans-serif;font-weight:600;font-size:13px;margin-bottom:12px">Part 1: find a visa and send an inquiry</div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:999px;background:#2C1E11;color:#fff;text-align:center;font-weight:600">Visitor lands on Home</div>
+      <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:8px;border:1px dashed #BF854C;background:#F5EFE9;text-align:center;font-weight:600">How do they find it?</div>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:2px">
+        <div>
+          <div style="width:1px;height:10px;background:#9A8F85;margin:0 auto"></div>
+          <div style="text-align:center;font-size:10.5px;color:#72675D;padding:2px 0">Experiences menu</div>
+          <div style="width:1px;height:6px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+          <div style="padding:8px 10px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">Visa Service category page</div>
+        </div>
+        <div>
+          <div style="width:1px;height:10px;background:#9A8F85;margin:0 auto"></div>
+          <div style="text-align:center;font-size:10.5px;color:#72675D;padding:2px 0">Search or chip</div>
+          <div style="width:1px;height:6px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+          <div style="padding:8px 10px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">Search results</div>
+        </div>
+        <div>
+          <div style="width:1px;height:10px;background:#9A8F85;margin:0 auto"></div>
+          <div style="text-align:center;font-size:10.5px;color:#72675D;padding:2px 0">Top Picks card</div>
+          <div style="width:1px;height:6px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+          <div style="padding:8px 10px;border-radius:8px;border:1px dashed #D8CFC6;background:#fff;text-align:center;color:#72675D">Goes straight to the service page</div>
+        </div>
+      </div>
+      <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">Service page: Tourist Visa, Education Visa programme or Visa Extension</div>
+      <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">Compare packages, processing time and documents needed</div>
+      <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:8px;border:1px dashed #BF854C;background:#F5EFE9;text-align:center;font-weight:600">Sure which package?</div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:2px">
+        <div>
+          <div style="width:1px;height:10px;background:#9A8F85;margin:0 auto"></div>
+          <div style="text-align:center;font-size:10.5px;color:#72675D;padding:2px 0">No</div>
+          <div style="width:1px;height:6px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+          <div style="padding:8px 10px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">"Not sure which visa?" helper (section 11) or Ask a question</div>
+        </div>
+        <div>
+          <div style="width:1px;height:10px;background:#9A8F85;margin:0 auto"></div>
+          <div style="text-align:center;font-size:10.5px;color:#72675D;padding:2px 0">Yes</div>
+          <div style="width:1px;height:6px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+          <div style="padding:8px 10px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">Select package, number of people and add ons (Airport pickup, Hotel)</div>
+        </div>
+      </div>
+      <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">Short inquiry form: name, email, phone, experience type, message</div>
+      <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">Send inquiry (no payment, no account)</div>
+      <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:999px;background:#2C1E11;color:#fff;text-align:center;font-weight:600">Inquiry received page with reference number</div>
+      <figcaption style="margin-top:12px;font-size:11px;color:#72675D;text-align:center">Figure 1. Discovery to inquiry. Both branches end in the same short form.</figcaption>
+    </figure>
+
+    <figure style="margin:0 0 18px;border:1px solid #E9E5E3;border-radius:12px;padding:18px 20px 16px;font-size:12px;line-height:1.4">
+      <div style="font-family:Onest,sans-serif;font-weight:600;font-size:13px;margin-bottom:12px">Part 2: quote, registration, payment and processing</div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:999px;background:#2C1E11;color:#fff;text-align:center;font-weight:600">Inquiry received page with reference number</div>
+      <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:8px;background:#BF854C;color:#2C1E11;text-align:center;font-weight:600">Touch 1: confirmation by email or Viber</div>
+      <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">Coordinator replies within 15 min (working hours) with quote and document checklist</div>
+      <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:8px;border:1px dashed #BF854C;background:#F5EFE9;text-align:center;font-weight:600">Accepts quote?</div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:16px;margin-top:2px">
+        <div>
+          <div style="width:1px;height:10px;background:#9A8F85;margin:0 auto"></div>
+          <div style="text-align:center;font-size:10.5px;color:#72675D;padding:2px 0">No</div>
+          <div style="width:1px;height:6px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+          <div style="padding:8px 10px;border-radius:999px;border:1px solid #E9E5E3;background:#F6F4F3;color:#72675D;text-align:center">Inquiry closed, kept in My Inquiries</div>
+        </div>
+        <div>
+          <div style="width:1px;height:10px;background:#9A8F85;margin:0 auto"></div>
+          <div style="text-align:center;font-size:10.5px;color:#72675D;padding:2px 0">Yes</div>
+          <div style="width:1px;height:6px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+          <div style="max-width:280px;margin:0 auto;padding:8px 10px;border-radius:8px;border:1px dashed #BF854C;background:#F5EFE9;text-align:center;font-weight:600">Registered and signed in?</div>
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:2px">
+            <div>
+              <div style="width:1px;height:10px;background:#9A8F85;margin:0 auto"></div>
+              <div style="text-align:center;font-size:10.5px;color:#72675D;padding:2px 0">No</div>
+              <div style="width:1px;height:6px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+              <div style="padding:8px 10px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">Create account or sign in, accept Terms</div>
+            </div>
+            <div>
+              <div style="width:1px;height:10px;background:#9A8F85;margin:0 auto"></div>
+              <div style="text-align:center;font-size:10.5px;color:#72675D;padding:2px 0">Yes</div>
+              <div style="width:1px;height:6px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+              <div style="padding:8px 10px;border-radius:8px;border:1px dashed #D8CFC6;background:#fff;text-align:center;color:#72675D">Continue to payment</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:8px;border:2px solid #2C1E11;background:#fff;text-align:center;font-weight:600">Pay service fee: PromptPay, Visa, Mastercard or KBZPay</div>
+      <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">Complete details: personal info, passport upload, appointment date</div>
+      <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+      <div style="max-width:300px;margin:0 auto;padding:8px 12px;border-radius:8px;border:1px dashed #BF854C;background:#F5EFE9;text-align:center;font-weight:600">Documents complete?</div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:2px">
+        <div>
+          <div style="width:1px;height:10px;background:#9A8F85;margin:0 auto"></div>
+          <div style="text-align:center;font-size:10.5px;color:#72675D;padding:2px 0">No</div>
+          <div style="width:1px;height:6px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+          <div style="padding:8px 10px;border-radius:8px;background:#BF854C;color:#2C1E11;text-align:center;font-weight:600">Touch 2: missing document reminder</div>
+          <div style="text-align:center;font-size:10.5px;color:#72675D;padding-top:4px">Returns to Complete details</div>
+        </div>
+        <div>
+          <div style="width:1px;height:10px;background:#9A8F85;margin:0 auto"></div>
+          <div style="text-align:center;font-size:10.5px;color:#72675D;padding:2px 0">Yes</div>
+          <div style="width:1px;height:6px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+          <div style="padding:8px 10px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">Coordinator verifies and prepares file</div>
+          <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+          <div style="padding:8px 10px;border-radius:8px;background:#BF854C;color:#2C1E11;text-align:center;font-weight:600">Touch 3: reminder the day before submission or appointment</div>
+          <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+          <div style="padding:8px 10px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">Submit to e-Visa, embassy or Immigration</div>
+          <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+          <div style="padding:8px 10px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">Status updates in My Inquiries and notifications</div>
+          <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+          <div style="padding:8px 10px;border-radius:999px;background:#2C1E11;color:#fff;text-align:center;font-weight:600">Visa issued, case completed</div>
+          <div style="width:1px;height:12px;background:#9A8F85;margin:0 auto"></div><div style="width:0;height:0;margin:0 auto 2px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9A8F85"></div>
+          <div style="padding:8px 10px;border-radius:8px;border:1px solid #D8CFC6;background:#fff;text-align:center">Offer next experience: Visa Extension or Airport &amp; Hotel Transfer</div>
+        </div>
+      </div>
+      <figcaption style="margin-top:12px;font-size:11px;color:#72675D;text-align:center">Figure 2. Quote to visa issued. Terms are accepted at sign in, before payment.</figcaption>
+    </figure>
+
+    <h2 style="font-family:Onest,sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:36px 0 8px"><span style="color:#BF854C;margin-right:8px">11</span>Visa chooser logic</h2>
+    <p style="margin:0 0 10px">Use this for the "Not sure which visa?" helper on the Visa Service category page, and as coordinator guidance.</p>
+    <figure style="margin:0 0 18px;border:1px solid #E9E5E3;border-radius:12px;padding:16px 18px;font-size:12px;line-height:1.4">
+      <div style="display:inline-block;padding:7px 14px;border-radius:8px;border:1px dashed #BF854C;background:#F5EFE9;font-weight:600;margin-bottom:10px">What do you need?</div>
+      <div style="display:grid;grid-template-columns:150px 110px minmax(0,1fr);border-top:1px solid #E9E5E3">
+        <div style="padding:8px 8px 8px 0;border-bottom:1px solid #E9E5E3;color:#72675D">Short trip, one entry</div>
+        <div style="padding:8px;border-bottom:1px solid #E9E5E3"></div>
+        <div style="padding:8px 0;border-bottom:1px solid #E9E5E3"><strong>Single-Entry Tourist Visa</strong> · 5 to 10 working days</div>
+
+        <div style="padding:8px 8px 8px 0;border-bottom:1px solid #E9E5E3;color:#72675D">Several trips in 6 months</div>
+        <div style="padding:8px;border-bottom:1px solid #E9E5E3"></div>
+        <div style="padding:8px 0;border-bottom:1px solid #E9E5E3"><strong>Multiple-Entry Tourist Visa</strong> · 5 to 10 working days</div>
+
+        <div style="padding:8px 8px 8px 0;border-bottom:1px solid #E9E5E3;color:#72675D;grid-row:span 5">Study in Thailand<div style="display:inline-block;margin-top:6px;padding:4px 10px;border-radius:6px;border:1px dashed #BF854C;background:#F5EFE9;font-weight:600;color:#2C1E11">Which study?</div></div>
+        <div style="padding:8px;border-bottom:1px solid #E9E5E3;color:#72675D">Language course</div>
+        <div style="padding:8px 0;border-bottom:1px solid #E9E5E3"><strong>ED Visa, Language School</strong> · 30 to 45 working days</div>
+        <div style="padding:8px;border-bottom:1px solid #E9E5E3;color:#72675D">Cooking or baking</div>
+        <div style="padding:8px 0;border-bottom:1px solid #E9E5E3"><strong>ED Visa, Culinary &amp; Cooking</strong> · 30 to 45 working days</div>
+        <div style="padding:8px;border-bottom:1px solid #E9E5E3;color:#72675D">Hospitality training</div>
+        <div style="padding:8px 0;border-bottom:1px solid #E9E5E3"><strong>ED Visa, Hotel and Restaurant</strong> · 30 to 45 working days</div>
+        <div style="padding:8px;border-bottom:1px solid #E9E5E3;color:#72675D">University degree</div>
+        <div style="padding:8px 0;border-bottom:1px solid #E9E5E3"><strong>ED Visa, Premium University</strong> · 15 to 25 working days</div>
+        <div style="padding:8px;border-bottom:1px solid #E9E5E3;color:#72675D">Child aged 3 to 18</div>
+        <div style="padding:8px 0;border-bottom:1px solid #E9E5E3"><strong>ED Visa, International School</strong> plus guardian visa · 20 to 30 working days</div>
+
+        <div style="padding:8px 8px 8px 0;color:#72675D;grid-row:span 3">Already here, need more time<div style="display:inline-block;margin-top:6px;padding:4px 10px;border-radius:6px;border:1px dashed #BF854C;background:#F5EFE9;font-weight:600;color:#2C1E11">Current visa?</div></div>
+        <div style="padding:8px;border-bottom:1px solid #E9E5E3;color:#72675D">Tourist</div>
+        <div style="padding:8px 0;border-bottom:1px solid #E9E5E3"><strong>Tourist Visa Extension (30 days)</strong> · 1 to 3 working days</div>
+        <div style="padding:8px;border-bottom:1px solid #E9E5E3;color:#72675D">ED</div>
+        <div style="padding:8px 0;border-bottom:1px solid #E9E5E3"><strong>ED Visa Extension</strong> · 1 to 3 working days</div>
+        <div style="padding:8px;color:#72675D">Other or not sure</div>
+        <div style="padding:8px 0"><span style="display:inline-block;padding:2px 10px;border-radius:999px;background:#F6F4F3;border:1px solid #E9E5E3;color:#72675D;font-weight:600">Ask a coordinator</span></div>
+      </div>
+      <figcaption style="margin-top:12px;font-size:11px;color:#72675D;text-align:center">Figure 3. Visa chooser. Read left to right: need, then answer, then recommended package.</figcaption>
+    </figure>
+
+    <h2 style="font-family:Onest,sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:36px 0 8px"><span style="color:#BF854C;margin-right:8px">12</span>Inquiry status lifecycle</h2>
+    <p style="margin:0 0 10px">Statuses for My Inquiries and notifications. One label per step, used the same way in English and Myanmar.</p>
+    <figure style="margin:0 0 14px;border:1px solid #E9E5E3;border-radius:12px;padding:16px 18px;font-size:11.5px">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 4px">
+        <span style="padding:5px 10px;border-radius:999px;border:1px solid #D8CFC6;background:#fff">Received</span><span style="color:#9A8F85">→</span>
+        <span style="padding:5px 10px;border-radius:999px;border:1px solid #D8CFC6;background:#fff">Quote sent</span><span style="color:#9A8F85">→</span>
+        <span style="padding:5px 10px;border-radius:999px;border:2px solid #2C1E11;background:#fff;font-weight:600">Awaiting payment</span><span style="color:#9A8F85">→</span>
+        <span style="padding:5px 10px;border-radius:999px;border:1px solid #D8CFC6;background:#fff">Documents needed</span><span style="color:#9A8F85">→</span>
+        <span style="padding:5px 10px;border-radius:999px;border:1px solid #D8CFC6;background:#fff">In review</span><span style="color:#9A8F85">→</span>
+        <span style="padding:5px 10px;border-radius:999px;border:1px solid #D8CFC6;background:#fff">Submitted</span><span style="color:#9A8F85">→</span>
+        <span style="padding:5px 10px;border-radius:999px;border:1px solid #D8CFC6;background:#fff">Approved</span><span style="color:#9A8F85">→</span>
+        <span style="padding:5px 10px;border-radius:999px;background:#2C1E11;color:#fff;font-weight:600">Completed</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:12px;color:#72675D">
+        <span>Submitted → <span style="padding:2px 8px;border-radius:999px;background:#FDECEC;color:#B42318;font-weight:600">Needs action</span> → back to In review</span>
+        <span>Quote sent or Documents needed → <span style="padding:2px 8px;border-radius:999px;background:#F6F4F3;border:1px solid #E9E5E3;font-weight:600">Closed</span></span>
+      </div>
+      <figcaption style="margin-top:12px;font-size:11px;color:#72675D;text-align:center">Figure 4. Main path on the first line, side paths below.</figcaption>
+    </figure>
+    <table style="width:100%;border-collapse:collapse;font-size:12.5px;line-height:1.5;margin:12px 0 4px">
+      <thead><tr>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px;width:26%">Status</th>
+        <th style="text-align:left;padding:7px 10px;background:#F5EFE9;border-bottom:1px solid #D8CFC6;font-weight:600;font-size:12px">Meaning for the customer</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;font-weight:600">Received</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3">We have your inquiry and reference number</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;font-weight:600">Quote sent</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3">Check your quote and document checklist</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;font-weight:600">Awaiting payment</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3">Create an account or sign in, then pay to continue</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;font-weight:600">Documents needed</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3">Upload your passport and other documents</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;font-weight:600">In review</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3">Your coordinator is checking your documents</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;font-weight:600">Submitted</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3">Your application is with the embassy, e-Visa system or Immigration</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;font-weight:600">Needs action</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3">We need more information from you</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;font-weight:600">Approved</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3">Your visa is approved</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;font-weight:600">Completed</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3">Your case is closed</td></tr>
+        <tr><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3;font-weight:600">Closed</td><td style="padding:7px 10px;border-bottom:1px solid #E9E5E3">Inquiry ended without a booking</td></tr>
+      </tbody>
+    </table>
+
+    <h2 style="font-family:Onest,sans-serif;font-size:21px;font-weight:600;letter-spacing:-0.01em;margin:36px 0 8px"><span style="color:#BF854C;margin-right:8px">13</span>Risks and gaps</h2>
+    <p style="margin:0 0 10px">Raise these with the CEO, Legal and the Data Protection lead before build.</p>
+    <ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px">
+      <li><strong>Passport upload and PDPA.</strong> Step 3.5 collects passport copies, date of birth and nationality. Needs a PDPA review, a privacy notice, encrypted storage, access limited to coordinators and a retention period before launch. Check with Legal or the Data Protection lead before sharing this data with partners.</li>
+      <li><strong>Terms after the inquiry.</strong> The short form has no Terms tick. Confirm with Legal that a privacy notice link on the form is enough to store inquiry contact data before the customer accepts the Terms at sign in.</li>
+      <li><strong>Card payments.</strong> Visa and Mastercard need a PCI DSS compliant payment gateway. Confirm the gateway with Finance and the CTO.</li>
+      <li><strong>Agent disclosure.</strong> Visa, medical and aesthetic pages must say Amara Reserve arranges the service and is not the embassy, hospital or clinic. Add to the footer and every service detail page.</li>
+      <li><strong>Processing time promises.</strong> Show times as estimates set by the authority, not a guarantee. Add "Timing depends on the embassy or Immigration" under each price panel.</li>
+      <li><strong>Airport transfer in two places.</strong> Airport &amp; Hotel Transfers is a Transport Services item and Airport pickup is a global add on. Use one price and one supplier for both.</li>
+      <li><strong>Community board.</strong> User posts need moderation, report and remove tools, and board rules. Block posts that contain phone numbers or passport details.</li>
+      <li><strong>Thailand News missing.</strong> The proposal lists Thailand news, festivals and sale seasons, and a public transport guide. Proposed as Insider Notes tab 4.6, with BTS and MRT routes added to 4.3 Travel guide.</li>
+      <li><strong>Car Rental.</strong> Self drive needs a valid licence check and insurance terms. Consider launching Private Car with Driver first.</li>
+      <li><strong>Open content.</strong> Leisure package prices, Education School price, and native review of Myanmar copy for Leisure and Education Visa labels.</li>
+    </ol>
+  </div>
+</doc-page>
+</x-dc>
+</body>
+</html>

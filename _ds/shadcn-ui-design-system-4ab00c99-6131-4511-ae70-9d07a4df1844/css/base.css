@@ -1,0 +1,32 @@
+/* Base document defaults + shared keyframes for shadcn/ui recreations */
+body {
+  font-family: var(--font-sans);
+  background: var(--background);
+  color: var(--foreground);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+::selection {
+  background: var(--selection);
+  color: var(--selection-foreground);
+}
+a { color: var(--primary); text-decoration: none; }
+a:hover { color: var(--primary); text-decoration: underline; text-underline-offset: 4px; }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+@keyframes ui-spin { to { transform: rotate(360deg); } }
+@keyframes ui-pulse { 50% { opacity: 0.5; } }
+@keyframes ui-caret-blink { 0%,70%,100% { opacity: 1; } 20%,50% { opacity: 0; } }
+@keyframes ui-in {
+  from { opacity: 0; transform: var(--ui-in-transform, scale(0.95)); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes ui-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ui-slide-in-right { from { transform: translateX(100%); } to { transform: none; } }
+@keyframes ui-slide-in-left { from { transform: translateX(-100%); } to { transform: none; } }
+@keyframes ui-slide-in-top { from { transform: translateY(-100%); } to { transform: none; } }
+@keyframes ui-slide-in-bottom { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes ui-accordion-down { from { height: 0; } to { height: var(--ui-accordion-height); } }
