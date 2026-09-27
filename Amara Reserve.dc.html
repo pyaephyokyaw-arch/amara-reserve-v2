@@ -242,6 +242,7 @@
     [data-reveal], [data-stagger] > *, main { animation:none !important; }
   }
 </style>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#BF854C"></rect><text x="50" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="44" font-weight="700" fill="#2C1E11">A</text></svg></template>
 </helmet>
 <div data-theme="{{ theme }}" data-lang="{{ lang }}" style="min-width:0;overflow-x:clip;background:var(--c-surface);color:var(--c-text)">
   <a href="#main" onClick="{{ skipToMain }}" style="position:absolute;left:16px;top:-60px;z-index:100;padding:10px 16px;border-radius:8px;background:#BF854C;color:var(--primary-foreground);font-weight:600;font-size:14px;text-decoration:none;transition:top 150ms" style-focus="top:12px">{{ skipLabel }}</a>
@@ -1803,17 +1804,19 @@ const D = [
   { slug:'visa', name:'Visa & Immigration', icon:'visa', blurb:'Short stays, long stays, study, retirement and the paperwork that keeps them valid. We prepare the file, you attend the appointment.',
     groups:[
       { title:'Tourist visa', sub:'Entry for travel, sightseeing and leisure.', items:[
-        { slug:'tourist-visa', name:'Tourist visa (TR visa)', desc:'60-day entry with a 30-day extension prepared in advance.', price:'฿4,500', kicker:'Visa' }
+        { slug:'tourist-visa', name:'Single-entry tourist visa (Single TR)', desc:'For short-term travellers entering Thailand once. Initial stay up to 60 days, can be extended locally. Processing 5 to 10 working days.', price:'฿4,500', kicker:'Visa' },
+        { slug:'tourist-visa-multi', name:'Multiple-entry tourist visa (Multi TR)', desc:'For frequent travellers. Valid for 6 months, stay up to 60 days per entry. Processing 5 to 10 working days.', price:'฿0', kicker:'Visa' }
       ]},
-      { title:'Education visa', sub:'Language schools, schools, colleges, universities and international schools we work with directly.', items:[
-        { slug:'ed-language', name:'ED visa - Thai language school', desc:'Enrolment, MOE approval and the one-year visa handled together.', price:'฿32,000', kicker:'Education' },
-        { slug:'ed-culinary', name:'ED visa - culinary & cooking school', desc:'For adult students in long-term professional culinary, baking or Thai chef programmes.', price:'฿0', kicker:'Education' },
-        { slug:'ed-hospitality', name:'ED visa - hotel & restaurant training', desc:'Certified vocational training in hospitality, culinary arts and service management.', price:'฿0', kicker:'Education' },
-        { slug:'ed-university', name:'ED visa - premium university placement', desc:'Application support and placement at partner universities.', price:'฿60,000', kicker:'Education' },
-        { slug:'ed-international-school', name:'ED visa - international school enrolment', desc:'K-12 international school admission and dependent visa handled together.', price:'฿45,000', kicker:'Education' }
+      { title:'Education visa', sub:'Language, culinary and hospitality schools, universities and international schools we work with directly.', items:[
+        { slug:'ed-language', name:'ED visa - language school (English, Thai, Chinese)', desc:'For adults studying non-formal courses at private language or culture centres. Processing 30 to 45 working days.', price:'฿32,000', kicker:'Education' },
+        { slug:'ed-culinary', name:'ED visa - culinary & cooking school', desc:'For adult students in long-term professional culinary, baking or Thai chef programmes. Processing 30 to 45 working days.', price:'฿0', kicker:'Education' },
+        { slug:'ed-hospitality', name:'ED visa - hotel & restaurant training', desc:'For long-term stays with certified vocational training in hospitality, culinary arts and service management. Processing 30 to 45 working days.', price:'฿0', kicker:'Education' },
+        { slug:'ed-university', name:'ED visa - premium university', desc:'For international university students. Extended stay during the degree plus up to one year after graduation. Processing 15 to 25 working days.', price:'฿60,000', kicker:'Education' },
+        { slug:'ed-international-school', name:'ED visa - international school', desc:'For students aged 3 to 18 at accredited international schools. Parents can apply for a guardian visa at the same time. Processing 20 to 30 working days.', price:'฿45,000', kicker:'Education' }
       ]},
       { title:'Visa extension', sub:'Stay longer without leaving Thailand.', items:[
-        { slug:'visa-extension', name:'Visa extension', desc:'Tourist visa extension (30 days) or ED visa extension (90 days / 1 year), filed at Immigration.', price:'฿0', kicker:'Visa' }
+        { slug:'visa-extension', name:'Tourist visa extension (30 days)', desc:'Lets eligible tourists stay 30 more days without leaving Thailand. Processing 1 to 3 working days.', price:'฿0', kicker:'Visa' },
+        { slug:'visa-extension-ed', name:'ED visa extension (90 days / 1 year)', desc:'Extends stay for active students and trainees, based on approved school or university documents. Processing 1 to 3 working days.', price:'฿0', kicker:'Visa' }
       ]}
     ]},
   { slug:'medical', name:'Medical & Health', icon:'medical', blurb:'Checkups, screening programmes and treatment at partner hospitals in Bangkok and Chiang Mai. Prices are the hospital package rate.',
@@ -1972,17 +1975,18 @@ const TERMS_CLAUSES = [
   { h:'Refusals', b:'Where an application is refused because of advice we gave, our service fee is refunded. We cannot refund third-party fees.' },
   { h:'Contact', b:'We contact you on the phone number and email you provide. Tell your coordinator if either changes while your case is open.' }
 ];
-const NAV_TREE = { visa:[ { slug:'tourist-visa' },
+const NAV_TREE = { visa:[
+  { group:'Tourist visa', label:'Tourist visa', children:[['tourist-visa','Single-entry tourist visa'],['tourist-visa-multi','Multiple-entry tourist visa']] },
   { group:'Education visa', label:'Education visa', children:[['ed-language','Language school'],['ed-culinary','Culinary & cooking school'],['ed-hospitality','Hotel & restaurant training'],['ed-university','Premium university'],['ed-international-school','International school']] },
-  { slug:'visa-extension' } ] };
-const NAV_QUICK = { visa:['tourist-visa','ed-language','ed-culinary','ed-hospitality','ed-university','ed-international-school','visa-extension'],
+  { group:'Visa extension', label:'Visa extension', children:[['visa-extension','Tourist visa extension (30 days)'],['visa-extension-ed','ED visa extension (90 days / 1 year)']] } ] };
+const NAV_QUICK = { visa:['tourist-visa','tourist-visa-multi','ed-language','ed-culinary','ed-hospitality','ed-university','ed-international-school','visa-extension','visa-extension-ed'],
   medical:['checkup-essential','hospital-booking','specialist-treatment','partner-hospitals'],
   aesthetics:['partner-clinics','aesthetic-clinics','facial-treatments','aftercare'],
   beauty:['facial-glow','nail-care','spa-body-massage','color-analysis'],
   transport:['tr-airport-hotel','tr-intercity','tr-private-driver','tr-car-rental'] };
 const MENU_LABEL = {
-  'tourist-visa':'Tourist visa', 'ltr':'LTR (10 years)',
-  'ed-language':'Education visa (language school)', 'ed-school':'Education visa (school)', 'ed-college':'Education visa (college)', 'ed-university':'Education visa (premium university)', 'ed-culinary':'Education visa (culinary & cooking school)', 'ed-hospitality':'Education visa (hotel & restaurant training)', 'ed-international-school':'Education visa (international school)', 'visa-extension':'Visa extension',
+  'tourist-visa':'Single-entry tourist visa', 'tourist-visa-multi':'Multiple-entry tourist visa', 'ltr':'LTR (10 years)',
+  'ed-language':'Education visa (language school)', 'ed-school':'Education visa (school)', 'ed-college':'Education visa (college)', 'ed-university':'Education visa (premium university)', 'ed-culinary':'Education visa (culinary & cooking school)', 'ed-hospitality':'Education visa (hotel & restaurant training)', 'ed-international-school':'Education visa (international school)', 'visa-extension':'Tourist visa extension (30 days)', 'visa-extension-ed':'ED visa extension (90 days / 1 year)',
   'retirement':'Retirement visa', 'marriage':'Marriage visa', 'dependent':'Dependent visa', 'elite':'Thailand Privilege',
   'checkup-essential':'Health checkup packages', 'hospital-booking':'Hospital appointment', 'specialist-treatment':'Special treatment', 'airport-hotel':'Airport pickup and hotel', 'partner-hospitals':'Partner hospitals',
   'checkup-premium':'Premium VIP checkup', 'checkup-senior':'Senior checkup (55+)', 'checkup-kids':'Kids checkup',
@@ -2194,7 +2198,7 @@ const MMD = {
 'Domestic & regional air tickets':'ပြည်တွင်းနှင့် ဒေသတွင်း လေယာဉ်လက်မှတ်','Booked and reissued for you, including group bookings.':'အုပ်စုလိုက် ဘွတ်ကင်အပါအဝင် ဘွတ်ကင်နှင့် ပြန်လည်ထုတ်ပေးမှု။',
 'Bus & train tickets':'ဘတ်စ်နှင့် ရထားလက်မှတ်','Sleeper trains, VIP coaches and the Chiang Mai routes.':'အိပ်ရထား၊ VIP ကားများနှင့် ချင်းမိုင်လမ်းကြောင်းများ။',
 'Car rental with or without driver':'ကားအငှား (ဒရိုင်ဘာ ပါ/မပါ)','Insurance included. Long-term monthly rates available.':'အာမခံ ပါဝင်သည်။ ရေရှည် လစဉ်နှုန်း ရနိုင်သည်။',
-'Tourist visa':'ခရီးသွားဗီဇာ','Visa extension':'ဗီဇာ သက်တမ်းတိုးခြင်း','Culinary & cooking school':'ချက်ပြုတ်ရေး သင်တန်းကျောင်း','Hotel & restaurant training':'ဟိုတယ်နှင့် စားသောက်ဆိုင် သင်တန်း','Premium university':'ပရီမီယံ တက္ကသိုလ်','Transport Services':'သယ်ယူပို့ဆောင်ရေး ဝန်ဆောင်မှု','Airport & hotel transfers':'လေဆိပ်နှင့် ဟိုတယ် အကြိုအပို့','Intercity transfers':'မြို့ချင်းဆက် အကြိုအပို့','Private car with driver':'ယာဉ်မောင်းပါ ကိုယ်ပိုင်ကား','Car rental':'ကားငှားရမ်းခြင်း','Clinical appointment':'ဆေးခန်း ချိန်းဆိုမှု','Post-treatment aftercare':'ကုသပြီးနောက် စောင့်ရှောက်မှု','Hospital appointment':'ဆေးရုံ ချိန်းဆိုမှု','Special treatment':'အထူးကုသမှု','Education visa':'ပညာရေးဗီဇာ','Language school':'ဘာသာစကားကျောင်း','School':'ကျောင်း','College':'ကောလိပ်','University':'တက္ကသိုလ်','International school':'နိုင်ငံတကာကျောင်း','Non-B & work permit':'Non-B နှင့် အလုပ်လုပ်ခွင့်','Non-O family visa':'Non-O မိသားစုဗီဇာ','DTV visa':'DTV ဗီဇာ','Education visa':'ပညာသင်ဗီဇာ','Visa extension':'ဗီဇာ သက်တမ်းတိုး','Extend your current visa before it expires, filed with immigration on your behalf.':'သက်တမ်းမကုန်မီ သင့်လက်ရှိဗီဇာကို သက်တမ်းတိုးရန် လူဝင်မှုရုံးသို့ တင်သွင်းပေးမည်။','DTV visa':'DTV ဗီဇာ','Education visa':'ပညာသင်ဗီဇာ','Visa extension':'ဗီဇာ သက်တမ်းတိုး','Extend your current visa before it expires, filed with immigration on your behalf.':'သက်တမ်းမကုန်မီ သင့်လက်ရှိဗီဇာကို သက်တမ်းတိုးရန် လူဝင်မှုရုံးသို့ တင်သွင်းပေးမည်။',
+'Tourist visa':'ခရီးသွားဗီဇာ','Single-entry tourist visa':'တစ်ကြိမ်ဝင် ခရီးသွားဗီဇာ','Multiple-entry tourist visa':'အကြိမ်ကြိမ်ဝင် ခရီးသွားဗီဇာ','Visa extension':'ဗီဇာ သက်တမ်းတိုးခြင်း','Tourist visa extension (30 days)':'ခရီးသွားဗီဇာ သက်တမ်းတိုး (ရက် ၃၀)','ED visa extension (90 days / 1 year)':'ပညာရေးဗီဇာ သက်တမ်းတိုး (ရက် ၉၀ / ၁ နှစ်)','Culinary & cooking school':'ချက်ပြုတ်ရေး သင်တန်းကျောင်း','Hotel & restaurant training':'ဟိုတယ်နှင့် စားသောက်ဆိုင် သင်တန်း','Premium university':'ပရီမီယံ တက္ကသိုလ်','Transport Services':'သယ်ယူပို့ဆောင်ရေး ဝန်ဆောင်မှု','Airport & hotel transfers':'လေဆိပ်နှင့် ဟိုတယ် အကြိုအပို့','Intercity transfers':'မြို့ချင်းဆက် အကြိုအပို့','Private car with driver':'ယာဉ်မောင်းပါ ကိုယ်ပိုင်ကား','Car rental':'ကားငှားရမ်းခြင်း','Clinical appointment':'ဆေးခန်း ချိန်းဆိုမှု','Post-treatment aftercare':'ကုသပြီးနောက် စောင့်ရှောက်မှု','Hospital appointment':'ဆေးရုံ ချိန်းဆိုမှု','Special treatment':'အထူးကုသမှု','Education visa':'ပညာရေးဗီဇာ','Language school':'ဘာသာစကားကျောင်း','School':'ကျောင်း','College':'ကောလိပ်','University':'တက္ကသိုလ်','International school':'နိုင်ငံတကာကျောင်း','Non-B & work permit':'Non-B နှင့် အလုပ်လုပ်ခွင့်','Non-O family visa':'Non-O မိသားစုဗီဇာ','DTV visa':'DTV ဗီဇာ','Education visa':'ပညာသင်ဗီဇာ','Visa extension':'ဗီဇာ သက်တမ်းတိုး','Extend your current visa before it expires, filed with immigration on your behalf.':'သက်တမ်းမကုန်မီ သင့်လက်ရှိဗီဇာကို သက်တမ်းတိုးရန် လူဝင်မှုရုံးသို့ တင်သွင်းပေးမည်။','DTV visa':'DTV ဗီဇာ','Education visa':'ပညာသင်ဗီဇာ','Visa extension':'ဗီဇာ သက်တမ်းတိုး','Extend your current visa before it expires, filed with immigration on your behalf.':'သက်တမ်းမကုန်မီ သင့်လက်ရှိဗီဇာကို သက်တမ်းတိုးရန် လူဝင်မှုရုံးသို့ တင်သွင်းပေးမည်။',
 'Health checkup packages':'ကျန်းမာရေး စစ်ဆေးမှု ','Hospital appointment booking':'ဆေးရုံ ချိန်းဆိုမှု','We book the slot, hospital and doctor, and send you the confirmed time.':'ချိန်းချက်၊ ဆေးရုံနှင့် ဆရာဝန်ကို ကျွန်ုပ်တို့ စီစဉ်ပြီး အတည်ပြုချိန်ကို ပေးပို့ပါမည်။',
 'Specialist treatment':'အထူးကု ကုသမှု','Referral and coordination with the right specialist for your condition, across our partner hospitals.':'သင့်ရောဂါအခြေအနေနှင့် ကိုက်ညီသော အထူးကုဆရာဝန်ထံ လွှဲပြောင်းညှိနှိုင်းပေးမှု။',
 'Airport pickup and hotel':'လေဆိပ်ကြိုပို့နှင့် ဟိုတယ်','Private airport transfer plus a hotel night near the hospital, bundled together.':'သီးသန့် လေဆိပ်ကားနှင့် ဆေးရုံအနီး ဟိုတယ်တစ်ညကို တွဲဖက်ပေးမှု။',
@@ -3670,7 +3674,7 @@ class Component extends DCLogic {
           .map(x => Object.assign(this.decorate(x), { relSlug: x.slug + '-rel' }));
       })(),
       heroChips: [
-        { name:tr('Tourist visa'), open: () => this.openItem({ slug:'tourist-visa' }) },
+        { name:tr('Tourist visa'), open: () => this.nav({ view:'category', cat:'visa', group:'Tourist visa' }) },
         { name:tr('Health checkup'), open: () => this.openItem({ slug:'checkup-essential' }) },
         { name:tr('Private chef dinner'), open: () => this.openItem({ slug:'private-chef' }) },
         { name:tr('Muay Thai'), open: () => this.openItem({ slug:'muay-thai' }) }
