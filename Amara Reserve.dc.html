@@ -441,7 +441,7 @@
       <div data-hero-body="" style="position:relative;max-width:1200px;margin:0 auto;padding:132px 24px 132px;width:100%">
         <div style="max-width:820px">
           <sc-if value="{{ isEnglish }}" hint-placeholder-val="{{ false }}">
-            <h1 data-display="" data-hero="" data-fold="" style="margin:0 0 20px;font-size:clamp(44px,6.4vw,88px);line-height:1.03;letter-spacing:-0.03em;font-weight:800;color:#fff;text-wrap:pretty;animation:fxRise 200ms cubic-bezier(0.4,0,0.2,1) 40ms both"><span data-om-id="d24dc7c1:106" data-tall="" style="color: var(--primary); text-shadow: 0 0 34px color-mix(in oklab, var(--primary) 42%, transparent); width: 741px; height: 256px">The Art of Pleasant Journeys and Total Serenity Harmony.</span></h1>
+            <h1 data-display="" data-hero="" data-fold="" style="margin:0 0 20px;font-size:clamp(36px,4.8vw,64px);line-height:1.08;letter-spacing:-0.03em;font-weight:800;color:#fff;text-wrap:pretty;animation:fxRise 200ms cubic-bezier(0.4,0,0.2,1) 40ms both"><span data-om-id="d24dc7c1:106" data-tall="" style="color: var(--primary); text-shadow: 0 0 34px color-mix(in oklab, var(--primary) 42%, transparent); width: 741px; height: 256px">The Art of Pleasant Journeys and Total Serenity Harmony.</span></h1>
             <p data-fold="" data-fold-soft="" style="margin:0 0 36px;font-size:var(--text-lg);line-height:1.6;font-weight:400;color:rgba(255,255,255,0.76);max-width:560px;text-wrap:pretty;animation:fxRise 200ms cubic-bezier(0.4,0,0.2,1) 80ms both">Effortless visa pathways, world-class medical care, and bespoke Thai explorations crafted around your desires.</p>
           </sc-if>
           <sc-if value="{{ isMyanmar }}" hint-placeholder-val="{{ true }}">
@@ -828,19 +828,20 @@
   <!-- ============ DETAIL ============ -->
   <sc-if value="{{ isDetail }}">
   <sc-if value="{{ isDir }}" hint-placeholder-val="{{ false }}">
-  <div style="max-width:1200px;margin:0 auto;padding:24px 24px 0">
-    <nav aria-label="Breadcrumb" style="display:flex;flex-wrap:wrap;gap:6px;font-size:13px;font-weight:600;color:var(--c-text-3);margin-bottom:20px"><span role="button" tabindex="0" onClick="{{ goHome }}" style="cursor:pointer;color:var(--c-text-2)">{{ t.p.home }}</span><span aria-hidden="true">›</span><span role="button" tabindex="0" onClick="{{ hGoMedical }}" style="cursor:pointer;color:var(--c-text-2)">{{ dT.medical }}</span><span aria-hidden="true">›</span><span>{{ item.name }}</span></nav>
-    <div data-zoom="" data-tall="" style="position:relative;height:460px;border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--border);margin-bottom:32px">
-      <div data-scrollscale="" style="position:absolute;inset:0;will-change:transform">
-        <image-slot id="{{ item.heroSlot }}" shape="rect" data-src="{{ item.heroImg }}" credit="{{ item.heroCredit }}" credit-href="{{ item.heroHref }}" placeholder="Partner hospitals image"></image-slot>
-      </div>
-      <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(10,10,10,0) 45%,rgba(10,10,10,0.55) 100%)"></div>
-      <div style="position:absolute;left:24px;bottom:22px;right:24px;pointer-events:none">
-        <span style="font-size:24px;line-height:1.3;font-weight:600;color:#fff;text-wrap:pretty">{{ item.name }}</span>
-      </div>
+  <section data-reveal="" style="position:relative;border-bottom:1px solid var(--border);background:var(--background);min-height:560px;display:flex;align-items:center;overflow:hidden">
+    <div aria-hidden="true" data-scrollscale="" style="position:absolute;inset:0;will-change:transform">
+      <image-slot id="{{ item.heroSlot }}" shape="rect" data-src="{{ item.heroImg }}" credit="{{ item.heroCredit }}" credit-href="{{ item.heroHref }}" placeholder="Partner hospitals image"></image-slot>
     </div>
+    <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,0.92) 0%,rgba(10,10,10,0.78) 45%,rgba(10,10,10,0.45) 100%)"></div>
+    <div style="position:relative;max-width:1200px;margin:0 auto;padding:64px 24px 48px;width:100%;box-sizing:border-box">
+      <div><nav aria-label="Breadcrumb" data-slot="badge" data-variant="secondary" style="margin-bottom:20px;display:inline-flex;flex-wrap:wrap;gap:4px"><span role="button" tabindex="0" onClick="{{ goHome }}" style="cursor:pointer">{{ t.p.home }}</span><span aria-hidden="true">·</span><span role="button" tabindex="0" onClick="{{ goHome }}" style="cursor:pointer">{{ hT.experiences }}</span><span aria-hidden="true">·</span><span role="button" tabindex="0" onClick="{{ hGoMedical }}" style="cursor:pointer">{{ dT.medical }}</span><span aria-hidden="true">·</span><span>{{ item.name }}</span></nav></div>
+      <h1 data-display="" data-fold="" data-big="" style="margin:0 0 12px;font-size:40px;line-height:1.15;letter-spacing:-0.025em;font-weight:600;color:#fff;max-width:820px;text-wrap:pretty">{{ item.name }}</h1>
+      <p data-fold="" style="margin:0;font-size:var(--text-base);line-height:var(--text-base--line-height);font-weight:400;color:rgba(255,255,255,0.78);max-width:640px;text-wrap:pretty">{{ item.desc }}</p>
+    </div>
+  </section>
+  <div style="max-width:1200px;margin:0 auto;padding:32px 24px 0">
     <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;margin-bottom:24px">
-      <h1 style="margin:0;font-size:28px;line-height:1.25;letter-spacing:-0.025em;font-weight:600">{{ dT.title }}</h1>
+      <h2 style="margin:0;font-size:28px;line-height:1.25;letter-spacing:-0.025em;font-weight:600">{{ dT.title }}</h2>
       <div style="position:relative;flex:1 1 280px;max-width:420px">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--c-text-3)" stroke-width="2" stroke-linecap="round" style="position:absolute;left:13px;top:14px;pointer-events:none"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
         <input type="search" value="{{ dirQ }}" onChange="{{ onDirQ }}" placeholder="{{ dT.search }}" aria-label="{{ dT.search }}" style="height:44px;box-sizing:border-box;padding:0 12px 0 38px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)">
@@ -879,6 +880,22 @@
   </sc-if>
   <sc-if value="{{ notDir }}" hint-placeholder-val="{{ true }}">
   <div>
+        <sc-if value="{{ item.noCollage }}" hint-placeholder-val="{{ true }}">
+    <section data-reveal="" style="position:relative;border-bottom:1px solid var(--border);background:var(--background);min-height:560px;display:flex;align-items:center;overflow:hidden">
+      <div aria-hidden="true" data-scrollscale="" style="position:absolute;inset:0;will-change:transform">
+        <image-slot id="{{ item.heroSlot }}" shape="rect" data-src="{{ item.heroImg }}" credit="{{ item.heroCredit }}" credit-href="{{ item.heroHref }}" placeholder="Package image"></image-slot>
+      </div>
+      <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,0.92) 0%,rgba(10,10,10,0.78) 45%,rgba(10,10,10,0.45) 100%)"></div>
+      <div style="position:relative;max-width:1200px;margin:0 auto;padding:64px 24px 48px;width:100%;box-sizing:border-box">
+      <sc-if value="{{ oldCrumb }}" hint-placeholder-val="{{ true }}"><div><nav aria-label="Breadcrumb" data-slot="badge" data-variant="secondary" style="margin-bottom:20px;display:inline-flex;flex-wrap:wrap;gap:4px"><span role="button" tabindex="0" onClick="{{ goHome }}" style="cursor:pointer">{{ t.p.home }}</span> · <span role="button" tabindex="0" onClick="{{ backToCat }}" style="cursor:pointer">{{ item.catName }}</span> · {{ item.name }}</nav></div></sc-if>
+      <sc-if value="{{ newCrumb }}" hint-placeholder-val="{{ false }}"><div><nav aria-label="Breadcrumb" data-slot="badge" data-variant="secondary" style="margin-bottom:20px;display:inline-flex;flex-wrap:wrap;gap:4px"><span role="button" tabindex="0" onClick="{{ goHome }}" style="cursor:pointer">{{ t.p.home }}</span><span aria-hidden="true">·</span><span role="button" tabindex="0" onClick="{{ goHome }}" style="cursor:pointer">{{ hT.experiences }}</span><span aria-hidden="true">·</span><span role="button" tabindex="0" onClick="{{ hGoMedical }}" style="cursor:pointer">{{ hT.medical }}</span><span aria-hidden="true">·</span><span>{{ item.crumbName }}</span></nav></div></sc-if>
+        <sc-if value="{{ item.hasKicker }}" hint-placeholder-val="{{ false }}"><div data-slot="badge" data-variant="secondary" style="margin-bottom:16px">{{ item.kicker }}</div></sc-if>
+        <h1 data-display="" data-fold="" data-big="" style="margin:0 0 12px;font-size:40px;line-height:1.15;letter-spacing:-0.025em;font-weight:600;color:#fff;max-width:820px;text-wrap:pretty">{{ item.name }}</h1>
+        <p data-fold="" style="margin:0;font-size:var(--text-base);line-height:var(--text-base--line-height);font-weight:400;color:rgba(255,255,255,0.78);max-width:640px;text-wrap:pretty">{{ item.desc }}</p>
+      </div>
+    </section>
+    </sc-if>
+    <sc-if value="{{ item.heroCollage }}" hint-placeholder-val="{{ false }}">
     <section data-reveal="" style="max-width:1200px;margin:0 auto;padding:24px 24px 0">
       <sc-if value="{{ oldCrumb }}" hint-placeholder-val="{{ true }}"><nav aria-label="Breadcrumb" style="font-size:13px;font-weight:600;color:var(--c-text-3);margin-bottom:16px"><span role="button" tabindex="0" onClick="{{ goHome }}" style="cursor:pointer;color:var(--c-text-2)">{{ t.p.home }}</span> · <span role="button" tabindex="0" onClick="{{ backToCat }}" style="cursor:pointer;color:var(--c-text-2)">{{ item.catName }}</span> · {{ item.name }}</nav></sc-if>
       <sc-if value="{{ newCrumb }}" hint-placeholder-val="{{ false }}"><nav aria-label="Breadcrumb" style="display:flex;flex-wrap:wrap;gap:6px;font-size:13px;font-weight:600;color:var(--c-text-3);margin-bottom:16px"><span role="button" tabindex="0" onClick="{{ goHome }}" style="cursor:pointer;color:var(--c-text-2)">{{ t.p.home }}</span><span aria-hidden="true">›</span><span role="button" tabindex="0" onClick="{{ goHome }}" style="cursor:pointer;color:var(--c-text-2)">{{ hT.experiences }}</span><span aria-hidden="true">›</span><span role="button" tabindex="0" onClick="{{ hGoMedical }}" style="cursor:pointer;color:var(--c-text-2)">{{ hT.medical }}</span><span aria-hidden="true">›</span><span>{{ item.crumbName }}</span></nav></sc-if>
@@ -897,23 +914,12 @@
           </sc-for>
         </div>
       </sc-if>
-      <sc-if value="{{ item.noCollage }}" hint-placeholder-val="{{ true }}">
-        <div data-zoom="" data-tall="" style="position:relative;height:460px;border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--border)">
-          <div data-scrollscale="" style="position:absolute;inset:0;will-change:transform">
-            <image-slot id="{{ item.heroSlot }}" shape="rect" data-src="{{ item.heroImg }}" credit="{{ item.heroCredit }}" credit-href="{{ item.heroHref }}" placeholder="Package image"></image-slot>
-          </div>
-          <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(10,10,10,0) 45%,rgba(10,10,10,0.55) 100%)"></div>
-          <div style="position:absolute;left:24px;bottom:22px;right:24px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;pointer-events:none">
-            <span style="font-size:24px;line-height:1.3;font-weight:600;color:#fff;text-wrap:pretty">{{ item.name }}</span>
-            <sc-if value="{{ item.hasKicker }}" hint-placeholder-val="{{ true }}"><span style="flex:0 0 auto;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.16);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.24);font-size:13px;font-weight:600;color:#fff;white-space:nowrap">{{ item.kicker }}</span></sc-if>
-          </div>
-        </div>
-      </sc-if>
     </section>
+    </sc-if>
     <section data-g="side" style="max-width:1200px;margin:0 auto;padding:32px 24px 0;display:grid;grid-template-columns:1fr 380px;gap:48px;align-items:start">
       <div>
-        <sc-if value="{{ item.hasKicker }}" hint-placeholder-val="{{ true }}"><div style="font-size:12px;font-weight:600;color:var(--c-accent);margin-bottom:10px">{{ item.kicker }}</div></sc-if>
-        <h1 style="margin:0 0 12px;font-size:24px;line-height:1.3;letter-spacing:-0.025em;font-weight:600;text-wrap:pretty">{{ item.name }}</h1>
+        <sc-if value="{{ item.heroCollage }}" hint-placeholder-val="{{ false }}"><div><sc-if value="{{ item.hasKicker }}" hint-placeholder-val="{{ false }}"><div style="font-size:12px;font-weight:600;color:var(--c-accent);margin-bottom:10px">{{ item.kicker }}</div></sc-if>
+        <h1 style="margin:0 0 12px;font-size:24px;line-height:1.3;letter-spacing:-0.025em;font-weight:600;text-wrap:pretty">{{ item.name }}</h1></div></sc-if>
         
         <p style="margin: 0 0 32px; font-size: 17px; line-height: 28px; font-weight: 500; color: var(--c-text-2); text-wrap: pretty; white-space: pre-line">{{ item.long }}</p><sc-if value="{{ notHosp }}" hint-placeholder-val="{{ true }}"><div><h2 style="margin:0 0 14px;font-size:20px;line-height:30px;font-weight:600">{{ t.p.included }}</h2>
         <div data-g="2" style="display:grid;grid-template-columns:1fr 1fr;gap:12px 32px;margin-bottom:36px">
@@ -1033,6 +1039,7 @@
             </div>
           </sc-for>
         </div>
+        </div></sc-if><div>
         <div style="margin:28px 0 12px">
           <h3 style="margin:0 0 4px;font-size:20px;line-height:30px;font-weight:600">{{ extrasTitle }}</h3>
           <p style="margin:0;font-size:14px;font-weight:500;color:var(--c-text-2)">{{ extrasNote }}</p>
@@ -1068,7 +1075,7 @@
             </div>
             <button type="button" onClick="{{ continuePackages }}" data-slot="button" data-variant="default" data-size="default">{{ t.p.continueBtn }}</button>
           </div>
-        </sc-if></div></sc-if></div></sc-if>
+        </sc-if></div></div></sc-if>
         <div style="margin-top:28px;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;background:var(--c-surface)">
           <div style="padding:8px 14px;font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--c-text-3);border-bottom:1px solid var(--border)">{{ t.p.sponsored }}</div>
           <div data-zoom="" style="position:relative;height:180px;background:var(--c-surface-alt)">
@@ -1287,7 +1294,7 @@
               <div style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text)">{{ hT.forOther }}</span><span style="font-size:13px;line-height:20px;font-weight:500;color:var(--c-text-3)">{{ hT.forOtherNote }}</span></div>
               <button type="button" role="switch" aria-checked="{{ h.form.forOther }}" aria-label="{{ hT.forOther }}" onClick="{{ hToggleOther }}" style="flex:0 0 auto;position:relative;width:40px;height:22px;border-radius:999px;border:0;padding:0;cursor:pointer;background:{{ hOtherBg }}"><span style="position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,0.2);transform:translateX({{ hOtherX }});transition:transform 150ms cubic-bezier(0.4,0,0.2,1)"></span></button>
             </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px">
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
               <label style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text-2)">{{ hT.title }}</span><select name="title" value="{{ h.form.title }}" onChange="{{ onHForm }}" style="height:36px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;min-width:0;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)"><option value="">{{ hT.selectPh }}</option><option value="Mr">Mr</option><option value="Mrs">Mrs</option><option value="Ms">Ms</option><option value="Dr">Dr</option></select></label>
               <label style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text-2)">{{ hT.first }}</span><input name="first" type="text" value="{{ h.form.first }}" onChange="{{ onHForm }}" placeholder="" style="height:36px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;min-width:0;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)"></label>
               <label style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text-2)">{{ hT.middle }}</span><input name="middle" type="text" value="{{ h.form.middle }}" onChange="{{ onHForm }}" placeholder="" style="height:36px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;min-width:0;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)"></label>
@@ -1338,6 +1345,185 @@
           </div>
         </sc-for>
         <div style="border-top:1px solid var(--border);padding-top:12px;font-size:13px;line-height:20px;font-weight:500;color:var(--c-text-3)">{{ hT.noPay }}</div>
+      </aside>
+    </section>
+  </div>
+  </sc-if>
+  <!-- ============ HEALTH PACKAGES: BOOKING STEPS ============ -->
+  <sc-if value="{{ isPBook }}">
+  <div style="max-width:1200px;margin:0 auto;padding:24px 24px 0">
+    <nav aria-label="Breadcrumb" style="display:flex;flex-wrap:wrap;gap:6px;font-size:13px;font-weight:600;color:var(--c-text-3);margin-bottom:16px"><span role="button" tabindex="0" onClick="{{ goHome }}" style="cursor:pointer;color:var(--c-text-2)">{{ t.p.home }}</span><span aria-hidden="true">›</span><span role="button" tabindex="0" onClick="{{ goHome }}" style="cursor:pointer;color:var(--c-text-2)">{{ hT.experiences }}</span><span aria-hidden="true">›</span><span role="button" tabindex="0" onClick="{{ hGoMedical }}" style="cursor:pointer;color:var(--c-text-2)">{{ hT.medical }}</span><span aria-hidden="true">›</span><span role="button" tabindex="0" onClick="{{ hBackPage }}" style="cursor:pointer;color:var(--c-text-2)">{{ pbT.crumb }}</span></nav>
+    <h1 style="margin:0 0 20px;font-size:24px;line-height:1.3;letter-spacing:-0.025em;font-weight:600">{{ pbT.title }}</h1>
+    <div style="display:flex;align-items:center;gap:0;margin-bottom:28px">
+      <sc-for list="{{ pbSteps }}" as="ps" hint-placeholder-count="4">
+        <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0">
+          <button type="button" onClick="{{ ps.go }}" aria-current="{{ ps.current }}" style="display:flex;align-items:center;gap:10px;min-width:0;background:none;border:0;padding:0;cursor:{{ ps.cursor }};font-family:inherit">
+            <span style="flex:0 0 auto;width:28px;height:28px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;background:{{ ps.bg }};color:{{ ps.fg }};border:1px solid {{ ps.bd }}">{{ ps.mark }}</span>
+            <span style="font-size:13px;font-weight:600;color:{{ ps.labelColor }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ ps.label }}</span>
+          </button>
+          <sc-if value="{{ ps.hasLine }}" hint-placeholder-val="{{ true }}"><span style="flex:1;height:1px;min-width:12px;background:var(--border)"></span></sc-if>
+        </div>
+      </sc-for>
+    </div>
+    <section data-g="side" style="display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:40px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:20px;min-width:0">
+        <sc-if value="{{ pbStep1 }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;flex-direction:column;gap:4px"><h2 style="margin:0;font-size:20px;line-height:30px;font-weight:600">{{ hpT.title }}</h2><p style="margin:0;font-size:14px;font-weight:500;color:var(--c-text-2)">{{ hpT.helper }}</p></div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px">
+              <sc-for list="{{ hpHospCards }}" as="hh" hint-placeholder-count="5">
+                <div role="button" tabindex="0" onClick="{{ hh.pick }}" aria-pressed="{{ hh.on }}" style="display:flex;flex-direction:column;border-radius:var(--radius-xl);border:1px solid {{ hh.bd }};background:{{ hh.bg }};overflow:hidden;cursor:pointer;transition:border-color 150ms cubic-bezier(0.4,0,0.2,1),background 150ms cubic-bezier(0.4,0,0.2,1)">
+                  <div style="position:relative;height:96px;background:var(--muted)"><image-slot id="{{ hh.slot }}" shape="rect" placeholder="Hospital photo"></image-slot></div>
+                  <div style="display:flex;flex-direction:column;gap:2px;padding:12px 14px 14px">
+                    <span style="font-size:14px;line-height:20px;font-weight:600;color:var(--c-text)">{{ hh.name }}</span>
+                    <span style="font-size:12px;font-weight:500;color:var(--c-text-3)">{{ hh.count }}</span>
+                    <span style="font-size:13px;font-weight:600;color:var(--primary);margin-top:2px">{{ hh.from }}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ hpConfirm }}" hint-placeholder-val="{{ false }}">
+              <div role="alert" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:var(--radius-xl);border:1px solid var(--border);background:var(--c-surface-alt)">
+                <span style="flex:1 1 260px;font-size:14px;line-height:22px;font-weight:500;color:var(--c-text)">{{ hpConfirmText }}</span>
+                <div style="display:flex;gap:8px"><button type="button" onClick="{{ hpKeep }}" data-slot="button" data-variant="outline" data-size="sm">{{ hpT.keep }}</button><button type="button" onClick="{{ hpReplace }}" data-slot="button" data-variant="default" data-size="sm">{{ hpT.replace }}</button></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ pbErrText }}" hint-placeholder-val="{{ false }}"><div role="alert" style="font-size:14px;font-weight:600;color:var(--destructive)">{{ pbErrText }}</div></sc-if>
+            <div style="display:flex;justify-content:flex-end"><button type="button" onClick="{{ pbNext1 }}" data-slot="button" data-variant="default" data-size="default">{{ hT.cont }}</button></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ pbStep2 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px"><h2 style="margin:0;font-size:20px;line-height:30px;font-weight:600">{{ pbPkgTitle }}</h2><button type="button" onClick="{{ pbToStep1 }}" style="background:none;border:0;padding:0;font-size:14px;font-weight:600;color:var(--c-accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-family:inherit">{{ hpT.change }}</button></div>
+              <p style="margin:0;font-size:14px;font-weight:500;color:var(--c-text-2)">{{ pbT.pkgNote }}</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ packageRows }}" as="pk" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:16px;border:1px solid {{ pk.border }};background:{{ pk.bg }};border-radius:var(--radius-xl);padding:14px 18px 14px 14px;transition:border-color 150ms cubic-bezier(0.4,0,0.2,1),background 150ms cubic-bezier(0.4,0,0.2,1)">
+                  <div style="flex:0 0 auto;width:84px;height:64px;border-radius:var(--radius-lg);overflow:hidden;background:var(--muted)"><image-slot id="{{ pk.slot }}" shape="rect" data-src="{{ pk.imgSrc }}" credit="{{ pk.imgCredit }}" credit-href="{{ pk.imgHref }}" placeholder="{{ pk.name }}"></image-slot></div>
+                  <div style="flex:1;min-width:0">
+                    <div style="font-size:15px;font-weight:600;line-height:22px;color:var(--c-text)">{{ pk.name }}</div>
+                    <div style="font-size:13px;font-weight:500;color:var(--c-text-2);text-wrap:pretty">{{ pk.desc }}</div>
+                    <div style="font-size:14px;font-weight:600;color:var(--primary);margin-top:4px">{{ pk.price }}</div>
+                  </div>
+                  <div style="flex:0 0 auto">
+                    <sc-if value="{{ pk.notSelected }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ pk.select }}" data-slot="button" data-variant="outline" data-size="default">{{ t.p.selectBtn }}</button></sc-if>
+                    <sc-if value="{{ pk.selected }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <button type="button" onClick="{{ pk.dec }}" aria-label="Decrease" style="width:32px;height:32px;border-radius:999px;border:1px solid var(--c-field-border);background:none;color:var(--c-text);cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="background:var(--accent)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"></path></svg></button>
+                        <span style="min-width:22px;text-align:center;font-size:15px;font-weight:600;color:var(--c-text)">{{ pk.qty }}</span>
+                        <button type="button" onClick="{{ pk.inc }}" aria-label="Increase" style="width:32px;height:32px;border-radius:999px;border:1px solid var(--c-field-border);background:none;color:var(--c-text);cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="background:var(--accent)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></button>
+                      </div>
+                    </sc-if>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;margin-top:8px"><h3 style="margin:0;font-size:18px;line-height:26px;font-weight:600">{{ pbT.addons }}</h3><p style="margin:0;font-size:14px;font-weight:500;color:var(--c-text-2)">{{ pbT.addonsNote }}</p></div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ extraRows }}" as="xr" hint-placeholder-count="2">
+                <div style="display:flex;align-items:center;gap:16px;border:1px solid {{ xr.border }};background:{{ xr.bg }};border-radius:var(--radius-xl);padding:14px 18px;transition:border-color 150ms cubic-bezier(0.4,0,0.2,1),background 150ms cubic-bezier(0.4,0,0.2,1)">
+                  <div style="flex:1;min-width:0">
+                    <div style="font-size:15px;font-weight:600;line-height:22px;color:var(--c-text)">{{ xr.name }}</div>
+                    <div style="font-size:13px;font-weight:500;color:var(--c-text-2);text-wrap:pretty">{{ xr.desc }}</div>
+                    <div style="font-size:14px;font-weight:600;color:var(--primary);margin-top:4px">{{ xr.price }}</div>
+                  </div>
+                  <div style="flex:0 0 auto">
+                    <sc-if value="{{ xr.notSelected }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ xr.select }}" data-slot="button" data-variant="outline" data-size="default">{{ t.p.selectBtn }}</button></sc-if>
+                    <sc-if value="{{ xr.selected }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <button type="button" onClick="{{ xr.dec }}" aria-label="Decrease" style="width:32px;height:32px;border-radius:999px;border:1px solid var(--c-field-border);background:none;color:var(--c-text);cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="background:var(--accent)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"></path></svg></button>
+                        <span style="min-width:22px;text-align:center;font-size:15px;font-weight:600;color:var(--c-text)">{{ xr.qty }}</span>
+                        <button type="button" onClick="{{ xr.inc }}" aria-label="Increase" style="width:32px;height:32px;border-radius:999px;border:1px solid var(--c-field-border);background:none;color:var(--c-text);cursor:pointer;display:flex;align-items:center;justify-content:center" style-hover="background:var(--accent)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></button>
+                      </div>
+                    </sc-if>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <h3 style="margin:8px 0 0;font-size:18px;line-height:26px;font-weight:600">{{ hT.f3 }}</h3>
+            <div style="display:flex;flex-direction:column;gap:12px">
+            <label style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:600;color:var(--c-text-2)">{{ hT.prefDate }}</span><input type="date" min="{{ hMinDate }}" value="{{ pb.date }}" onChange="{{ onPbDate }}" style="height:36px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;min-width:0;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)"></label>
+            <sc-if value="{{ pbDateErr }}" hint-placeholder-val="{{ false }}"><div role="alert" style="font-size:13px;font-weight:600;color:var(--destructive)">{{ pbDateErr }}</div></sc-if>
+            <sc-for list="{{ pbSlotGroups }}" as="sg" hint-placeholder-count="2">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <span style="font-size:13px;font-weight:600;color:var(--c-text-2)">{{ sg.label }}</span>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px">
+                  <sc-for list="{{ sg.slots }}" as="sl" hint-placeholder-count="3"><button type="button" onClick="{{ sl.pick }}" aria-pressed="{{ sl.on }}" style="min-height:40px;padding:6px 8px;border-radius:var(--radius-md);border:1px solid {{ sl.bd }};background:{{ sl.bg }};color:var(--c-text);font-size:13px;font-weight:600;cursor:pointer">{{ sl.label }}</button></sc-for>
+                </div>
+              </div>
+            </sc-for>
+            <div style="font-size:13px;line-height:20px;font-weight:500;color:var(--c-text-3)">{{ hT.slotNote }}</div>
+          </div>
+            <sc-if value="{{ pbErrText }}" hint-placeholder-val="{{ false }}"><div role="alert" style="font-size:14px;font-weight:600;color:var(--destructive)">{{ pbErrText }}</div></sc-if>
+            <div style="display:flex;justify-content:space-between;gap:12px"><button type="button" onClick="{{ pbBack }}" data-slot="button" data-variant="outline" data-size="default">{{ hT.back }}</button><button type="button" onClick="{{ pbNext2 }}" data-slot="button" data-variant="default" data-size="default">{{ hT.cont }}</button></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ pbStep3 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <h2 style="margin:0;font-size:20px;line-height:30px;font-weight:600">{{ hT.patientInfo }}</h2>
+            <sc-if value="{{ signedOut }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;padding:20px;border:1px solid var(--border);border-radius:var(--radius-xl)"><span style="font-size:15px;line-height:24px;font-weight:500;color:var(--c-text-2)">{{ hT.signInNote }}</span><button type="button" onClick="{{ pbSignIn }}" data-slot="button" data-variant="default" data-size="default">{{ hT.signInBtn }}</button></div>
+            </sc-if>
+            <sc-if value="{{ signedIn }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius-lg)">
+              <div style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text)">{{ hT.forOther }}</span><span style="font-size:13px;line-height:20px;font-weight:500;color:var(--c-text-3)">{{ hT.forOtherNote }}</span></div>
+              <button type="button" role="switch" aria-checked="{{ pb.form.forOther }}" aria-label="{{ hT.forOther }}" onClick="{{ pbToggleOther }}" style="flex:0 0 auto;position:relative;width:40px;height:22px;border-radius:999px;border:0;padding:0;cursor:pointer;background:{{ pbOtherBg }}"><span style="position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,0.2);transform:translateX({{ pbOtherX }});transition:transform 150ms cubic-bezier(0.4,0,0.2,1)"></span></button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+              <label style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text-2)">{{ hT.title }}</span><select name="title" value="{{ pb.form.title }}" onChange="{{ onPbForm }}" style="height:36px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;min-width:0;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)"><option value="">{{ hT.selectPh }}</option><option value="Mr">Mr</option><option value="Mrs">Mrs</option><option value="Ms">Ms</option><option value="Dr">Dr</option></select></label>
+              <label style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text-2)">{{ hT.first }}</span><input name="first" type="text" value="{{ pb.form.first }}" onChange="{{ onPbForm }}" placeholder="" style="height:36px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;min-width:0;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text-2)">{{ hT.middle }}</span><input name="middle" type="text" value="{{ pb.form.middle }}" onChange="{{ onPbForm }}" placeholder="" style="height:36px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;min-width:0;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text-2)">{{ hT.last }}</span><input name="last" type="text" value="{{ pb.form.last }}" onChange="{{ onPbForm }}" placeholder="" style="height:36px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;min-width:0;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text-2)">{{ hT.gender }}</span><select name="gender" value="{{ pb.form.gender }}" onChange="{{ onPbForm }}" style="height:36px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;min-width:0;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)"><option value="">{{ hT.selectPh }}</option><option value="Female">{{ hT.genderF }}</option><option value="Male">{{ hT.genderM }}</option><option value="Not stated">{{ hT.genderN }}</option></select></label>
+              <label style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text-2)">{{ hT.dob }}</span><input name="dob" type="date" value="{{ pb.form.dob }}" onChange="{{ onPbForm }}" placeholder="" style="height:36px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;min-width:0;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text-2)">{{ hT.nat }}</span><input name="nat" type="text" value="{{ pb.form.nat }}" onChange="{{ onPbForm }}" placeholder="" style="height:36px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;min-width:0;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text-2)">{{ hT.idno }}</span><input name="idno" type="text" value="{{ pb.form.idno }}" onChange="{{ onPbForm }}" placeholder="" style="height:36px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;min-width:0;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text-2)">{{ hT.phone }}</span><input name="phone" type="tel" value="{{ pb.form.phone }}" onChange="{{ onPbForm }}" placeholder="+95 or +66" style="height:36px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;min-width:0;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)"></label>
+              <label style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:14px;font-weight:600;color:var(--c-text-2)">{{ hT.email }}</span><input name="email" type="email" value="{{ pb.form.email }}" onChange="{{ onPbForm }}" placeholder="you@example.com" style="height:36px;box-sizing:border-box;padding:0 12px;border-radius:var(--radius-md);border:1px solid var(--c-field-border);color:var(--c-text);background:var(--c-surface);font-size:15px;font-weight:500;outline:none;width:100%;min-width:0;font-family:inherit" style-focus="border-color:var(--c-accent);box-shadow:0 0 0 2px var(--c-surface),0 0 0 4px var(--c-accent)"></label>
+            </div>
+            <div style="font-size:13px;line-height:20px;font-weight:500;color:var(--c-text-3)">{{ hT.idNote }}</div>
+            <label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer"><input name="consent" type="checkbox" checked="{{ pb.form.consent }}" onChange="{{ onPbForm }}" style="width:16px;height:16px;margin-top:3px;flex:0 0 auto;accent-color:var(--primary)"><span style="font-size:14px;line-height:22px;font-weight:500;color:var(--c-text-2)">{{ pbConsentText }}</span></label>
+          </div>
+            </sc-if>
+            <sc-if value="{{ pbErrText }}" hint-placeholder-val="{{ false }}"><div role="alert" style="font-size:14px;font-weight:600;color:var(--destructive)">{{ pbErrText }}</div></sc-if>
+            <div style="display:flex;justify-content:space-between;gap:12px"><button type="button" onClick="{{ pbBack }}" data-slot="button" data-variant="outline" data-size="default">{{ hT.back }}</button><button type="button" onClick="{{ pbSend }}" data-slot="button" data-variant="default" data-size="default">{{ pbT.send }}</button></div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ pbStep4 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <span style="align-self:flex-start;padding:4px 10px;border-radius:999px;background:var(--accent);color:var(--c-accent);font-size:12px;font-weight:600">{{ pbT.received }}</span>
+              <h2 style="margin:0;font-size:22px;line-height:1.3;font-weight:600">{{ pbT.sentTitle }}</h2>
+              <p style="margin:0;font-size:15px;line-height:24px;font-weight:500;color:var(--c-text-2)">{{ pbRefText }}</p>
+            </div>
+            <div style="border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden">
+              <sc-for list="{{ pbSentLines }}" as="ln" hint-placeholder-count="5">
+                <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 16px;border-bottom:1px solid var(--border)"><span style="font-size:14px;font-weight:500;color:var(--c-text-3)">{{ ln.k }}</span><span style="font-size:14px;font-weight:600;text-align:right">{{ ln.v }}</span></div>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <h3 style="margin:0;font-size:18px;line-height:26px;font-weight:600">{{ hT.alwaysHere }}</h3>
+              <sc-for list="{{ pbTouches }}" as="tc" hint-placeholder-count="3">
+                <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex:0 0 auto;width:26px;height:26px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;background:var(--accent);color:var(--c-accent)">{{ tc.n }}</span><span style="font-size:15px;line-height:24px;font-weight:500;color:var(--c-text-2)">{{ tc.text }}</span></div>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px"><button type="button" onClick="{{ hGoInquiries }}" data-slot="button" data-variant="default" data-size="default">{{ hT.myInq }}</button><button type="button" onClick="{{ pbAnother }}" data-slot="button" data-variant="outline" data-size="default">{{ pbT.another }}</button></div>
+          </div>
+        </sc-if>
+      </div>
+      <aside style="position:sticky;top:72px;border-radius:var(--radius-xl);border:1px solid var(--border);box-shadow:var(--shadow-z8);padding:24px;background:var(--c-surface);display:flex;flex-direction:column;gap:14px">
+        <h2 style="margin:0;font-size:18px;line-height:26px;font-weight:600">{{ pbT.panel }}</h2>
+        <sc-for list="{{ pbSummary }}" as="sm" hint-placeholder-count="4">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span style="flex:0 0 auto;width:24px;height:24px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;background:{{ sm.badgeBg }};color:{{ sm.badgeFg }};border:1px solid {{ sm.badgeBd }}">{{ sm.mark }}</span>
+            <div style="min-width:0;display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;font-weight:600;color:{{ sm.labelColor }}">{{ sm.label }}</span><span style="font-size:14px;line-height:20px;font-weight:500;color:var(--c-text-2);overflow-wrap:anywhere">{{ sm.value }}</span></div>
+          </div>
+        </sc-for>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:1px solid var(--border);padding-top:12px"><span style="font-size:14px;font-weight:500;color:var(--c-text-3)">{{ pbT.total }}</span><span style="font-size:20px;font-weight:600;color:var(--c-text)">{{ addonTotal }}</span></div>
+        <div style="font-size:13px;line-height:20px;font-weight:500;color:var(--c-text-3)">{{ t.p.noPayment }}</div>
       </aside>
     </section>
   </div>
@@ -2180,11 +2366,11 @@ const D = [
     ]},
   { slug:'medical', name:'Medical & Health', icon:'medical', blurb:'Checkups, screening programmes and treatment at partner hospitals in Bangkok and Chiang Mai. Prices are the hospital package rate.',
     groups:[
-      { title:'Health checkups', sub:'PhayaThai, MedPark, Bumrungrad International, Bangkok Hospital and Ladprao General.', items:[
+      { title:'Health Packages', sub:'PhayaThai, MedPark, Bumrungrad International, Bangkok Hospital and Ladprao General.', items:[
         { slug:'checkup-essential', name:'Essential Health Checkup', desc:"A complete one-stop medical checkup service that guides you step-by-step through your health screening in Bangkok.", price:'฿5,000', kicker:'' },
         { slug:'checkup-kids', name:'Kids health checkup', desc:'Growth, vision, hearing and vaccination review for ages 3–15.', price:'฿2,700', kicker:'Thonburi Bamrungmuang' }
       ]},
-      { title:'Specialist programmes', sub:'Structured programmes with pre-admission coordination.', items:[
+      { title:'Hospital Appointments', sub:'Structured programmes with pre-admission coordination.', items:[
         { slug:'hospital-booking', name:'Hospital Appointment', desc:'We book the slot, hospital and doctor, and send you the confirmed time.', price:'฿0', kicker:'' },
         { slug:'gi-endoscopy', name:'GI endoscopy programme', desc:'Gastroscopy and colonoscopy under sedation, with a recovery room.', price:'฿32,000', kicker:'Phyathai' },
         { slug:'kidney', name:'Kidney screening package', desc:'Renal function panel, ultrasound and nephrologist consultation.', price:'฿9,400', kicker:'Bangkok Hospital CM' },
@@ -2192,7 +2378,7 @@ const D = [
         { slug:'maternity', name:'Maternity delivery package', desc:'Natural or caesarean, covering room, paediatric check and newborn care.', price:'฿89,000', kicker:'Phyathai' },
         { slug:'eye-vision', name:'TRSC eye & vision assessment', desc:'Refractive surgery workup with LASIK and ICL suitability review.', price:'฿6,500', kicker:'TRSC' }
       ]},
-      { title:'Bundled with your visit', sub:'Perks added to selected hospital packages.', items:[
+      { title:'Partner hospitals', sub:'Our signed partner hospitals in Bangkok. Open one to see the address and key details.', items:[
         { slug:'airport-hotel', name:'Airport pickup and hotel', desc:'Private airport transfer plus a hotel night near the hospital, bundled together.', price:'฿5,900', kicker:'Perk' },
         { slug:'partner-hospitals', name:'Partner hospitals', desc:'Our signed partner hospitals. Search by name or city and see the address and key details.', price:'฿0', kicker:'', directory:true },
         { slug:'airport-transfer', name:'Airport transfer & hospital escort', desc:'Private car both ways with a coordinator who stays with you.', price:'฿2,400', kicker:'Perk' },
@@ -2202,31 +2388,42 @@ const D = [
     ]},
   { slug:'aesthetics', name:'Beauty & Spa', icon:'aesthetics', blurb:'Published prices, no consultation fee to find out. Skin treatments and surgical procedures at accredited clinics.',
     groups:[
-      { title:'Skin & injectables', sub:'Prices are per session unless stated.', items:[
-        { slug:'aesthetic-clinics', name:'Aesthetic clinics', desc:'Browse accredited aesthetic clinics and book a consultation, no fee to ask.', price:'฿0', kicker:'Skin' },
-        { slug:'facial-treatments', name:'Facial & body treatments', desc:'Skin, pigment, anti-ageing and body contouring treatments matched to your goals.', price:'฿0', kicker:'Skin' },        { slug:'hifu', name:'Facial and skin treatments', desc:'Non-surgical lifting for jawline and cheeks. No downtime.', price:'฿9,900', kicker:'Skin' },
+      { title:'Partner clinics', sub:'Accredited aesthetic clinics we work with directly, across Bangkok and Chiang Mai.', items:[
+        { slug:'partner-clinics', name:'Partner clinics', desc:'Accredited aesthetic clinics we work with directly, across Bangkok and Chiang Mai.', price:'฿0', kicker:'Clinic' }
+      ]},
+      { title:'Clinical appointment', sub:'Browse accredited aesthetic clinics and book a consultation, no fee to ask.', items:[
+        { slug:'aesthetic-clinics', name:'Aesthetic clinics', desc:'Browse accredited aesthetic clinics and book a consultation, no fee to ask.', price:'฿0', kicker:'Skin' }
+      ]},
+      { title:'Facial & body treatments', sub:'Skin, pigment, anti-ageing and body contouring treatments matched to your goals.', items:[
+        { slug:'facial-treatments', name:'Facial & body treatments', desc:'Skin, pigment, anti-ageing and body contouring treatments matched to your goals.', price:'฿0', kicker:'Skin' },
+        { slug:'hifu', name:'Facial and skin treatments', desc:'Non-surgical lifting for jawline and cheeks. No downtime.', price:'฿9,900', kicker:'Skin' },
         { slug:'botox', name:'Skin Brightening Treatment', desc:'Forehead, glabella or crow\u2019s feet. Genuine product, batch shown.', price:'฿4,500', kicker:'Injectable' },
         { slug:'filler', name:'Dermal filler - 1cc', desc:'Cheek, chin or lip. Placed by a certified physician.', price:'฿12,000', kicker:'Injectable' },
         { slug:'pico-laser', name:'Pico laser - full face', desc:'Pigment, melasma and acne scarring across five sessions.', price:'฿6,800', kicker:'Skin' },
-        { slug:'partner-clinics', name:'Partner clinics', desc:'Accredited aesthetic clinics we work with directly, across Bangkok and Chiang Mai.', price:'฿0', kicker:'Clinic' },
-        { slug:'aftercare', name:'Post-treatment aftercare', desc:'Follow-up reviews, recovery support and a coordinator on call after your treatment.', price:'฿0', kicker:'Aftercare' }
-      ]},
-      { title:'Surgical procedures', sub:'Quoted inclusive of theatre, anaesthesia and follow-up.', items:[
         { slug:'body-treatments', name:'Body treatments', desc:'Body contouring and skin-tightening treatments, surgical and non-surgical.', price:'฿0', kicker:'Surgery' },
         { slug:'rhinoplasty', name:'Rhinoplasty', desc:'Open or closed technique, silicone or rib cartilage.', price:'฿95,000', kicker:'Surgery' },
         { slug:'double-eyelid', name:'Double eyelid surgery', desc:'Incisional or suture method with one-week suture removal.', price:'฿45,000', kicker:'Surgery' },
         { slug:'liposuction', name:'Liposuction - per area', desc:'Abdomen, flanks or thighs, with a compression garment included.', price:'฿68,000', kicker:'Surgery' },
         { slug:'breast-aug', name:'Breast augmentation', desc:'Implant of your choice, one night stay and three follow-ups.', price:'฿165,000', kicker:'Surgery' }
+      ]},
+      { title:'Post-treatment aftercare', sub:'Follow-up reviews, recovery support and a coordinator on call after your treatment.', items:[
+        { slug:'aftercare', name:'Post-treatment aftercare', desc:'Follow-up reviews, recovery support and a coordinator on call after your treatment.', price:'฿0', kicker:'Aftercare' }
       ]}
     ]},
   { slug:'beauty', name:'Wellness', icon:'beauty', blurb:'Facial, nail, skin and body treatments at partner salons and spas. Prices are per session.',
     groups:[
-      { title:'Wellness', sub:'Book a session at a partner salon or spa.', items:[
-        { slug:'facial-glow', name:'Facial Glow & Hydration', desc:'Deep cleanse, hydration boost and glow finish for tired or dull skin.', price:'฿1,500', kicker:'Beauty' },
+      { title:'Facial glow & hydration', sub:'Deep cleanse, hydration boost and glow finish for tired or dull skin.', items:[
+        { slug:'facial-glow', name:'Facial Glow & Hydration', desc:'Deep cleanse, hydration boost and glow finish for tired or dull skin.', price:'฿1,500', kicker:'Beauty' }
+      ]},
+      { title:'Nail & skin care', sub:'Manicure, pedicure, nail art and skin care at partner salons.', items:[
         { slug:'nail-care', name:'Nail & Skin Care', desc:'Manicure, pedicure, nail art and skin care at partner salons.', price:'฿900', kicker:'Beauty' },
-        { slug:'color-analysis', name:'Personal Color Analysis', desc:'A styling consultant maps the tones and shades that suit you best.', price:'฿2,200', kicker:'Beauty' },
-        { slug:'waxing', name:'Waxing & Smooth Skin', desc:'Full or partial body waxing with a certified therapist.', price:'฿800', kicker:'Beauty' },
+        { slug:'waxing', name:'Waxing & Smooth Skin', desc:'Full or partial body waxing with a certified therapist.', price:'฿800', kicker:'Beauty' }
+      ]},
+      { title:'Spa & body massage', sub:'Thai, oil or aromatherapy massage at partner spas.', items:[
         { slug:'spa-body-massage', name:'Spa & Body Massage', desc:'Thai, oil or aromatherapy massage at partner spas.', price:'฿1,200', kicker:'Beauty' }
+      ]},
+      { title:'Personal color analysis', sub:'A styling consultant maps the tones and shades that suit you best.', items:[
+        { slug:'color-analysis', name:'Personal Color Analysis', desc:'A styling consultant maps the tones and shades that suit you best.', price:'฿2,200', kicker:'Beauty' }
       ]}
     ]},
   { slug:'tours', name:'Leisure', icon:'tours', blurb:'Day trips out of Bangkok, attraction entry and the transport to get there. Prices are per person.',
@@ -2268,10 +2465,16 @@ const D = [
     ]},
   { slug:'transport', name:'Transport Services', icon:'transport', blurb:'Airport and hotel transfers, trips between cities and private cars with licensed operators. Prices are quoted per trip.',
     groups:[
-      { title:'Transport Services', sub:'Private transfers and cars with licensed operators.', items:[
-        { slug:'tr-airport-hotel', name:'Airport & Hotel Transfers', desc:'Private car between Suvarnabhumi or Don Mueang and your hotel, with a driver waiting at arrivals.', price:'฿0', kicker:'Transfer' },
-        { slug:'tr-intercity', name:'Intercity Transfers', desc:'Door-to-door private trips between Bangkok, Pattaya, Hua Hin, Chiang Mai and other cities.', price:'฿0', kicker:'Transfer' },
-        { slug:'tr-private-driver', name:'Private Car with Driver', desc:'A car and an English-speaking driver by the half day or full day, on your schedule.', price:'฿0', kicker:'Car' },
+      { title:'Airport & hotel transfers', sub:'Private car between Suvarnabhumi or Don Mueang and your hotel, with a driver waiting at arrivals.', items:[
+        { slug:'tr-airport-hotel', name:'Airport & Hotel Transfers', desc:'Private car between Suvarnabhumi or Don Mueang and your hotel, with a driver waiting at arrivals.', price:'฿0', kicker:'Transfer' }
+      ]},
+      { title:'Intercity transfers', sub:'Door-to-door private trips between Bangkok, Pattaya, Hua Hin, Chiang Mai and other cities.', items:[
+        { slug:'tr-intercity', name:'Intercity Transfers', desc:'Door-to-door private trips between Bangkok, Pattaya, Hua Hin, Chiang Mai and other cities.', price:'฿0', kicker:'Transfer' }
+      ]},
+      { title:'Private car with driver', sub:'A car and an English-speaking driver by the half day or full day, on your schedule.', items:[
+        { slug:'tr-private-driver', name:'Private Car with Driver', desc:'A car and an English-speaking driver by the half day or full day, on your schedule.', price:'฿0', kicker:'Car' }
+      ]},
+      { title:'Car rental', sub:'Self-drive rental with insurance. A valid driving licence is checked before pickup.', items:[
         { slug:'tr-car-rental', name:'Car Rental', desc:'Self-drive rental with insurance. A valid driving licence is checked before pickup.', price:'฿0', kicker:'Car' }
       ]}
     ]}];
@@ -2635,7 +2838,7 @@ const MMD = {
 'Overnight sleep study':'တစ်ညတာ အိပ်စက်မှု စစ်ဆေးခြင်း','Full polysomnography in a private room, with CPAP titration option.':'သီးသန့်အခန်းတွင် အိပ်စက်မှု အပြည့်အစုံ စစ်ဆေးမှု၊ CPAP ချိန်ညှိမှု ရွေးချယ်နိုင်သည်။',
 'Maternity delivery package':'မီးဖွားမှု package','Natural or caesarean, covering room, paediatric check and newborn care.':'သဘာဝ သို့မဟုတ် ခွဲစိတ်မွေးဖွားမှု၊ အခန်း၊ ကလေးဆရာဝန်စစ်ဆေးမှုနှင့် မွေးကင်းစ ပြုစုမှု ပါဝင်သည်။',
 'TRSC eye & vision assessment':'TRSC မျက်စိနှင့် အမြင် စစ်ဆေးမှု','Refractive surgery workup with LASIK and ICL suitability review.':'LASIK နှင့် ICL အတွက် သင့်တော်မှု စစ်ဆေးမှု အပါအဝင် မျက်စိခွဲစိတ်မှု ပြင်ဆင်စစ်ဆေးချက်။',
-'Bundled with your visit':'သင့်ခရီးစဉ်နှင့် တွဲဖက် ဝန်ဆောင်မှုများ','Perks added to selected hospital packages.':'ရွေးချယ်ထားသော ဆေးရုံ package များတွင် ထပ်ဆောင်း ပါဝင်သည်။',
+'Partner hospitals (section)':'သင့်ခရီးစဉ်နှင့် တွဲဖက် ဝန်ဆောင်မှုများ','Perks added to selected hospital packages.':'ရွေးချယ်ထားသော ဆေးရုံ package များတွင် ထပ်ဆောင်း ပါဝင်သည်။',
 'Airport transfer & hospital escort':'လေဆိပ် ပို့ဆောင်မှုနှင့် ဆေးရုံ လိုက်ပါကူညီမှု','Private car both ways with a coordinator who stays with you.':'အသွားအပြန် သီးသန့်ကားနှင့် သင်နှင့်အတူ ရှိနေမည့် ဝန်ထမ်း။',
 'Hotel stay & dining credit':'ဟိုတယ်တည်းခိုမှုနှင့် အစားအစာ credit','One night near the hospital with dinner for two, on selected packages.':'ဆေးရုံအနီး တစ်ညနှင့် နှစ်ဦးစာ ညစာ၊ ရွေးချယ်ထားသော package များတွင်။',
 'Medical treatment visa support':'ဆေးကုသမှု ဗီဇာ ပံ့ပိုးမှု','Hospital letter, extension filing and companion visa where eligible.':'ဆေးရုံစာ၊ သက်တမ်းတိုးတင်သွင်းမှုနှင့် အရည်အချင်းပြည့်မီပါက လိုက်ပါသူ ဗီဇာ။',
@@ -2983,7 +3186,13 @@ const PIX = {
     ['photo-1668072921628-6e024f6aadd8','Raelle Cameron','https://unsplash.com/photos/a-table-with-plates-and-food-oQ7h-WWUmMY']
   ]
 };
+const VISA_IMG_GROUPS = ['Tourist visa', 'Education visa', 'Visa extension'];
+const VISA_IMG_SLUGS = (() => { const v = D.find(c => c.slug === 'visa'); const out = new Set(); if (v) v.groups.forEach(g => { if (VISA_IMG_GROUPS.includes(g.title)) g.items.forEach(i => out.add(i.slug)); }); return out; })();
+const visaImg = slug => VISA_IMG_SLUGS.has(slug) || /^(tourist-visa|ed-|visa-extension)/.test(String(slug || ''));
+const VISA_PIC = { imgSrc:'./assets/visa-service.png', imgCredit:'', imgHref:'' };
+const HEALTH_PIC = { imgSrc:'./assets/health-service.png', imgCredit:'', imgHref:'' };
 function PICK(pool, key, w) {
+  if (pool === 'medical') return Object.assign({}, HEALTH_PIC);
   const p = PIX[pool] || PIX.city;
   let h = 0;
   const k = String(key || '');
@@ -2998,7 +3207,7 @@ class Component extends DCLogic {
     dynamicNotifs:[], followupRef:null, addonRead:{}, heroMuted:true,
     ff:{ passport:'', appointmentDate:'', addons:{}, notes:'', fullName:'', dob:'', nationality:'', arrivalDate:'', passportExpiry:'', stayLength:'60' },
     theme:'dark', auth:null, authError:false, user:null, hubTab:'food', foodCity:'All cities', postType:'All posts', hq:'', helpTopic:'All topics', reviewsExpanded:false, profileOpen:false, notifsOpen:false,
-    notifRead:{}, hpHosp:null, hpPending:null, h:null, hStep:1, hRef:'', hAuthPending:false, inqStep:null, inqAddonQty:{}, pkgQty:{}, termsAgreed:false, termsError:false, saved:{},
+    notifRead:{}, hpHosp:null, hpPending:null, h:null, hStep:1, hRef:'', hAuthPending:false, pbStep:1, pb:{ form:F0, date:'', slot:'', prefilled:false }, pbErr:'', pbRef:'', pbAuthPending:false, inqStep:null, inqAddonQty:{}, pkgQty:{}, termsAgreed:false, termsError:false, saved:{},
     pf:{ name:'', email:'', phone:'', nationality:'' },
     a:{ name:'', email:'', password:'', remember:true } };
   themeSvg(dark) {
@@ -3101,16 +3310,17 @@ class Component extends DCLogic {
     applyLang(this.state.lang);
     const out = [];
     D.forEach(cat => (cat.groups || []).forEach(g => g.items.forEach(it =>
-      out.push(Object.assign({}, it, { catSlug:cat.slug, catName:cat.name, groupTitle:g.title })))));
+      out.push(Object.assign({}, it, { name: MENU_LABEL[it.slug] || it.name, catSlug:cat.slug, catName: ((TXT[this.state.lang] || TXT.mm).nav || {})[cat.slug] || cat.name, groupTitle:g.title })))));
     return out;
   }
   decorate(it) {
     applyLang(this.state.lang);
     const showP = this.props.showPrices ?? true;
     const cat = D.find(c => c.slug === it.catSlug);
-    const localCat = cat ? cat.name : (it.catName || '');
+    const localCat = cat ? (((TXT[this.state.lang] || TXT.mm).nav || {})[cat.slug] || cat.name) : (it.catName || '');
     const rated = RATINGS[it.slug];
-    return Object.assign({}, it, PICK(it.catSlug, it.slug, 700), {
+    return Object.assign({}, it, visaImg(it.slug) ? VISA_PIC : PICK(it.catSlug, it.slug, 700), {
+      name: MENU_LABEL[it.slug] || it.name,
       catName: localCat,
       isSaved: !!this.state.saved[it.slug],
       heartColor: this.state.saved[it.slug] ? '#FF4842' : '#fff',
@@ -3192,7 +3402,7 @@ class Component extends DCLogic {
     const s = this.state;
     const rated = RATINGS[it.slug];
     const showP = this.props.showPrices ?? true;
-    const pic = PICK(c, it.slug + '-hero', 1400);
+    const pic = visaImg(it.slug) ? VISA_PIC : PICK(c, it.slug + '-hero', 1400);
     const destPick = name => this.setState({ destFocus: name });
     const heroCollage = it.slug === 'tour-packages' ? [
       { slot:'dest-bangkok', src:'', label: tr('Bangkok'), cta: tr('Select'), ph: tr('Drop a {city} photo').replace('{city}', tr('Bangkok')), pick: () => destPick('Bangkok') },
@@ -3252,7 +3462,7 @@ class Component extends DCLogic {
     const sel = rows.filter(r => r.selected);
     const out = {
       newCrumb: isCheckup || (s.view === 'detail' && s.item && s.item.slug === 'hospital-booking'), oldCrumb: !(isCheckup || (s.item && s.item.slug === 'hospital-booking')),
-      isCheckup, pkgSectionVisible: !isCheckup || !!s.hpHosp, hpChangeVisible: isCheckup && !!s.hpHosp,
+      isCheckup, pkgSectionVisible: !isCheckup, hpChangeVisible: isCheckup && !!s.hpHosp,
       hpT: { title: tr('Hospitals'), helper: tr('Select a hospital to view its available packages and send an inquiry.'), change: tr('Change hospital'), replace: tr('Replace selection'), keep: tr('Keep current selection') },
       hpHospCards: HP_HOSPS.map(id => { const h = HOSPITALS.find(x => x.id === id), n = HP_PKGS.filter(p => p.hosp === id).length, on = id === s.hpHosp;
         return { slot:'hp-hosp-' + id, name: tr(h.name), count: tr('{n} packages').replace('{n}', n), from: tr('From') + ' ' + hpMin(id), on,
@@ -3266,7 +3476,6 @@ class Component extends DCLogic {
       pkgNote: isCheckup ? tr('Select one or more packages, then add any add-ons below.') : tt.p.otherServicesNote
     };
     if (s.item && s.item.slug === 'checkup-essential') Object.assign(out, {
-      extrasTitle: tr('Add-ons'), extrasNote: tr('Airport pickup and a hotel near the hospital. Prices are per trip or per night.'),
       subjectLabel: sel.length ? sel.map(r => r.name + (r.qty > 1 ? ' ×' + r.qty : '')).join(', ') + (cur ? ' · ' + tr(cur.name) : '') : s.item.name
     });
     return out;
@@ -3448,6 +3657,88 @@ class Component extends DCLogic {
       hGoMedical: () => this.nav({ view:'category', cat:'medical', group:'all' })
     };
   }
+  pbPrefill() {
+    const u = this.state.user; if (!u) return;
+    const pb = this.state.pb; if (pb.prefilled || pb.form.forOther) return;
+    const pf = this.state.pf || {};
+    const nm = (pf.name || u.name || '').trim().split(/\s+/).filter(Boolean);
+    this.setState(st => { const fm = st.pb.form; return { pb: Object.assign({}, st.pb, { prefilled:true, form: Object.assign({}, fm, {
+      first: fm.first || nm[0] || '', last: fm.last || (nm.length > 1 ? nm[nm.length - 1] : ''), middle: fm.middle || (nm.length > 2 ? nm.slice(1, -1).join(' ') : ''),
+      email: fm.email || pf.email || u.email || '', phone: fm.phone || pf.phone || '', nat: fm.nat || pf.nationality || '' }) }) }; });
+  }
+  pbEnsureAuth() {
+    if (!this.state.user) { this.setState({ auth:'signin', authError:false, pbAuthPending:true }); return false; }
+    this.pbPrefill(); return true;
+  }
+  pbVals(rows, extras) {
+    const s = this.state, pb = s.pb, step = s.pbStep;
+    const hosp = HOSPITALS.find(x => x.id === s.hpHosp);
+    const selP = rows.filter(r => r.selected), selX = extras.filter(r => r.selected);
+    const list = a => a.map(r => r.name + (r.qty > 1 ? ' ×' + r.qty : '')).join(', ');
+    const fm = pb.form;
+    const formOk = ['first','last','idno','phone','email'].every(k => (fm[k] || '').trim()) && /^\S+@\S+\.\S+$/.test(fm.email || '') && !!fm.consent;
+    const dateErr = this.hDateErr(pb.date), slot = H_SLOTS.find(x => x.key === pb.slot);
+    const whenOk = !!pb.date && !dateErr && !!slot;
+    const whenText = whenOk ? new Date(pb.date + 'T00:00:00').toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }) + ' · ' + slot.label : '';
+    const patient = formOk ? [fm.title, fm.first, fm.middle, fm.last].filter(Boolean).join(' ') : '';
+    const sums = [hosp ? tr(hosp.name) : '', list(selP), list(selX) || (selP.length ? tr('None') : ''), whenText, patient];
+    const labels = ['Hospital', 'Packages', 'Add-ons', 'Appointment Date and Time', 'Patient Information'].map(tr);
+    const total = selP.concat(selX).reduce((a, r) => a + (parseInt(String(r.rawPrice || '').replace(/[^\d]/g, ''), 10) || 0) * r.qty, 0);
+    const go = n => { this.setState({ pbErr:'' }); this.nav({ pbStep:n }); if (n === 3) this.pbEnsureAuth(); };
+    const sumDone = [!!hosp, selP.length > 0, selX.length > 0, whenOk, formOk];
+    const curOf = i => step === 1 ? i === 0 : step === 2 ? (i >= 1 && i <= 3) : step === 3 ? i === 4 : false;
+    const setPb = (patch, cb) => this.setState(st => ({ pb: Object.assign({}, st.pb, typeof patch === 'function' ? patch(st.pb) : patch), pbErr:'' }), cb);
+    return {
+      isPBook: s.view === 'pbook',
+      pbStep1: step === 1, pbStep2: step === 2, pbStep3: step === 3, pbStep4: step === 4, pb,
+      pbT: { crumb: tr('Health Packages'), title: tr('Book a health package'), panel: tr('Package Inquiry'), total: tr('Estimated total'),
+        pkgNote: tr('Select one or more packages and the number of people for each.'),
+        addons: tr('Add-ons for any package'), addonsNote: tr('Add attraction tickets or a day trip to your inquiry. Prices are per person.'),
+        details: tr('Your details'), detailsNote: tr('No account needed to send this inquiry. A coordinator replies with a quote.'),
+        name: tr('Full name *'), date: tr('Preferred checkup date'), message: tr('Message'), messagePh: tr('Anything we should know, such as dates you cannot move'),
+        later: tr('Your passport copy, medications, allergies and previous results are asked for after you accept the quote.'),
+        send: tr('Send inquiry'), received: tr('Inquiry received'), sentTitle: tr('Your package inquiry is sent'), another: tr('Book another package') },
+      pbPkgTitle: tr('Packages at {h}').replace('{h}', hosp ? tr(hosp.name) : ''),
+      pbErrText: { hosp: tr('Choose a hospital to continue.'), pkg: tr('Select at least one package to continue.'), when: tr('Choose an appointment date and time to continue.'), form: tr('Fill in the required fields marked * and tick the consent box.') }[s.pbErr] || '',
+      pbSteps: ['Hospital', 'Packages', 'Patient Info', 'Inquiry sent'].map((l, i) => { const n = i + 1, d = step > n, c = step === n, can = d && step < 4;
+        return { label: tr(l), mark: d ? '✓' : String(n), current: c ? 'step' : 'false', hasLine: n < 4, cursor: can ? 'pointer' : 'default',
+          bg: d || c ? 'var(--primary)' : 'var(--c-surface)', fg: d || c ? 'var(--primary-foreground)' : 'var(--c-text-3)', bd: d || c ? 'var(--primary)' : 'var(--border)',
+          labelColor: c ? 'var(--c-text)' : 'var(--c-text-3)', go: () => { if (can) go(n); } }; }),
+      pbSummary: labels.map((l, i) => { const d = sumDone[i], c = curOf(i);
+        return { label: l, value: sums[i] || '-', mark: d ? '✓' : String(i + 1), labelColor: c ? 'var(--c-accent)' : 'var(--c-text-3)',
+          badgeBg: d ? 'var(--primary)' : c ? 'var(--accent)' : 'var(--c-surface)', badgeFg: d ? 'var(--primary-foreground)' : 'var(--c-text)', badgeBd: d ? 'var(--primary)' : c ? 'var(--c-accent)' : 'var(--border)' }; }),
+      onPbForm: e => { const t = e.target, v = t.type === 'checkbox' ? t.checked : t.value; setPb(p => ({ form: Object.assign({}, p.form, { [t.name]: v }) })); },
+      onPbDate: e => setPb({ date: e.target.value }),
+      pbDateErr: dateErr,
+      pbSlotGroups: ['Morning','Afternoon'].map(g => ({ label: tr(g) + (g === 'Morning' ? ' · 9:00 to 12:00' : ' · 13:00 to 16:00'),
+        slots: H_SLOTS.filter(x => x.group === g).map(x => { const on = x.key === pb.slot;
+          return { label: x.label, pick: () => setPb({ slot:x.key }), on, bd: on ? 'var(--primary)' : 'var(--border)', bg: on ? 'var(--accent)' : 'var(--c-surface)' }; }) })),
+      pbOtherBg: fm.forOther ? 'var(--primary)' : 'var(--c-field-border)', pbOtherX: fm.forOther ? '18px' : '0px',
+      pbToggleOther: () => fm.forOther ? setPb({ prefilled:false, form: F0 }, () => this.pbPrefill()) : setPb({ form: Object.assign({}, F0, { forOther:true }) }),
+      pbConsentText: tr('I agree that Amara Reserve may collect these details, including my health information and ID number, and share them with {hosp} to arrange this checkup.').replace('{hosp}', hosp ? tr(hosp.name) : tr('the hospital')),
+      pbSignIn: () => this.pbEnsureAuth(),
+      pbNext1: () => hosp ? go(2) : this.setState({ pbErr:'hosp' }),
+      pbNext2: () => !selP.length ? this.setState({ pbErr:'pkg' }) : !whenOk ? this.setState({ pbErr:'when' }) : go(3),
+      pbToStep1: () => go(1),
+      pbBack: () => go(Math.max(1, step - 1)),
+      pbSend: () => {
+        if (!formOk) return this.setState({ pbErr:'form' });
+        if (!this.pbEnsureAuth()) return;
+        const ref = 'FX-' + Math.floor(100000 + Math.random() * 899999);
+        const notif = { ref, catSlug:'medical', itemName:'Health Packages', price: '฿' + total.toLocaleString('en-US'), status:'pending', hospital: hosp ? hosp.name : '' };
+        this.setState(st => ({ dynamicNotifs:[notif].concat(st.dynamicNotifs), pbRef:ref, pbErr:'' }));
+        this.nav({ pbStep:4 });
+      },
+      pbRefText: tr('Reference {ref}. A coordinator checks the slot with {hosp} and sends your quote. No payment now.').replace('{ref}', s.pbRef || '-').replace('{hosp}', hosp ? tr(hosp.name) : tr('the hospital')),
+      pbSentLines: [[tr('Hospital'), sums[0]], [tr('Packages'), sums[1]], [tr('Add-ons'), list(selX) || tr('None')], [tr('Appointment'), whenText], [tr('Patient'), patient], [tr('Estimated total'), '฿' + total.toLocaleString('en-US')]].map(([k, v]) => ({ k, v: v || '-' })),
+      pbTouches: [
+        'We confirm your inquiry by email or Viber. A coordinator checks the hospital slot and sends a quote with a document checklist.',
+        'Accept the quote, sign in and pay. Then add your passport copy, medications, allergies and previous results.',
+        'We remind you the day before to fast from midnight, and a coordinator meets you at the hospital.'
+      ].map((t, i) => ({ n: String(i + 1), text: tr(t) })),
+      pbAnother: () => this.setState({ pkgQty:{}, extraQty:{}, hpHosp:null, hpPending:null, pbStep:1, pbRef:'', pb:{ form:F0, date:'', slot:'', prefilled:false } }, () => this.nav({ view:'detail' }))
+    };
+  }
   openItem(it) {
     if (it && it.slug === 'specialist-treatment') it = { slug:'hospital-booking' };
     const full = this.allItems().find(x => x.slug === it.slug) || it;
@@ -3470,7 +3761,7 @@ class Component extends DCLogic {
     const a = this.state.a || {};
     const pending = this.state.pendingInquiry;
     this.setState({ user:{ name, email:a.email || '' }, auth:null, authError:false, pendingInquiry:false,
-      a:{ name:'', email:'', password:'', remember:true } }, () => { if (pending) this.sendInquiry(); if (this.state.hAuthPending) { this.setState({ hAuthPending:false }); this.hPrefill(); } });
+      a:{ name:'', email:'', password:'', remember:true } }, () => { if (pending) this.sendInquiry(); if (this.state.hAuthPending) { this.setState({ hAuthPending:false }); this.hPrefill(); } if (this.state.pbAuthPending) { this.setState({ pbAuthPending:false }); this.pbPrefill(); } });
   }
   sendInquiry() {
     const ref = 'FX-' + Math.floor(100000 + Math.random() * 899999);
@@ -3848,7 +4139,13 @@ class Component extends DCLogic {
       open: () => c.slug === 'hub' ? this.nav({ view:'hub' }) : c.slug === 'help' ? this.nav({ view:'help' }) : this.nav({ view:'category', cat:c.slug, group:'all' })
     }));
     const cat = D.find(c => c.slug === s.cat) || D[0];
-    const groups = cat.groups.map(g => ({ title:g.title, sub:g.sub, items:g.items.filter(it => !it.directory).map(it => this.decorate(Object.assign({}, it, { catSlug:cat.slug, catName:cat.name }))) }));
+    const groups = cat.groups.map(g => ({ title:g.title, sub:g.sub, items: g.title === 'Health Packages'
+      ? HP_PKGS.map(p => { const h = HOSPITALS.find(x => x.id === p.hosp); return Object.assign(this.decorate({ slug:'hp-' + p.id, name:tr(p.name), desc:[p.promo ? tr('Promotion') : '', p.for ? tr(p.for) : ''].filter(Boolean).join(' · ') || tr(h ? h.desc : ''), price:p.price, kicker:h ? tr(h.name) : '', catSlug:cat.slug, catName:cat.name }), { open: () => { this.openItem({ slug:'checkup-essential' }); this.setState({ hpHosp:p.hosp, hpPending:null, pkgQty:{ 'checkup-essential':1, ['hp-' + p.id]:1 } }); } }); })
+      : g.title === 'Hospital Appointments'
+      ? HOSPITALS.filter(h => h.signed !== false && h.region === 'bkk' && h.desc).map(h => Object.assign(this.decorate({ slug:'ha-' + h.id, name:tr(h.name), desc:tr(h.desc), price:'฿0', kicker:tr(h.area), catSlug:cat.slug, catName:cat.name }), { price:'', priceLabel:'', open: () => { this.hSet({ hospital:h.id, doctor:'', spec:'', open:2, err:'' }); this.openItem({ slug:'hospital-booking' }); } }))
+      : g.title === 'Partner hospitals'
+      ? HOSPITALS.filter(h => h.signed !== false && h.region === 'bkk' && h.desc).map(h => Object.assign(this.decorate({ slug:'ph-' + h.id, name:tr(h.name), desc:tr(h.desc), price:'฿0', kicker:tr(h.area), catSlug:cat.slug, catName:cat.name }), { price:'', priceLabel:'', open: () => { this.openItem({ slug:'partner-hospitals' }); this.setState({ dirOpen:h.id }); } }))
+      : g.items.filter(it => !it.directory).map(it => this.decorate(Object.assign({}, it, { catSlug:cat.slug, catName:cat.name }))) }));
     const chipDefs = [{ label:tt.ui.all, key:'all' }].concat(cat.groups.map(g => ({ label:g.title, key:g.title })));
     const item = s.item ? this.detailFor(s.item) : {};
     const results = s.q ? this.allItems().filter(it => (it.name + ' ' + it.desc + ' ' + it.catName + ' ' + it.kicker).toLowerCase().includes(s.q.toLowerCase())).map(it => this.decorate(it)) : [];
@@ -3941,7 +4238,7 @@ class Component extends DCLogic {
     })();
     const xq = s.extraQty || {};
     const tkGroup = (D.find(c => c.slug === 'tours').groups || []).find(g => g.items.some(i => i.slug === 'tk-sealife'));
-    const extraRows = (s.item && s.item.slug === 'checkup-essential' ? HP_ADDONS : ['tk-sealife','tk-safari','tk-dinner-cruise','tk-ayutthaya'].map(sl => {
+    const extraRows = (['tk-sealife','tk-safari','tk-dinner-cruise','tk-ayutthaya'].map(sl => {
       const it = tkGroup ? tkGroup.items.find(i => i.slug === sl) : null;
       return it ? { key:sl, name:it.name, desc:it.desc, price:it.price } : null;
     }).filter(Boolean)).map(x => {
@@ -4295,7 +4592,9 @@ class Component extends DCLogic {
           .map((x, i) => Object.assign(this.decorate(x), { topSlug: x.slug + '-top', rank: String(i + 1),
             demand: RATINGS[x.slug] ? (tt === TXT.mm ? RATINGS[x.slug][1] + ' စုံစမ်းချက်' : RATINGS[x.slug][1] + ' inquiries') : (tt === TXT.mm ? 'လူကြိုက်များ' : 'Popular') }));
       })(),
-      cat: Object.assign({}, cat, { name: catLabel(cat), blurb: tt.catBlurb[cat.slug] || cat.blurb }),
+      cat: (() => { const g = s.group && s.group !== 'all' ? cat.groups.find(x => x.title === s.group) : null;
+        const gName = g ? tr(g.title).replace(/^Tourist visa$/, 'Tourist Visa') : null;
+        return Object.assign({}, cat, { name: gName || catLabel(cat), blurb: g ? tr(g.sub) : (tt.catBlurb[cat.slug] || cat.blurb) }); })(),
       shownGroups: s.group === 'all' ? groups : groups.filter(g => g.title === s.group),
       groupChips: chipDefs.map(g => Object.assign({ label:g.label,
         pick: () => this.setState({ group:g.key }) }, TAB(s.group === g.key))),
@@ -4585,13 +4884,15 @@ class Component extends DCLogic {
       ],
       ...this.hospVals(),
       ...this.hpVals(packageRowsComputed),
+      ...this.pbVals(packageRowsComputed, extraRows),
       goHome: () => this.nav({ view:'home' }),
       goHelp: () => this.nav({ view:'help' }),
       goHub: () => this.nav({ view:'hub' }),
       goInquiry: () => this.nav({ view:'inquiry', item:null, inqStep:'form', termsError:false }),
       backToCat: () => this.nav({ view:'category', cat:(s.item && s.item.catSlug) || 'visa', group:'all' }),
       continuePackages: () => {
-        if (!packageRowsComputed.some(r => r.selected)) { if (s.item && s.item.slug === 'checkup-essential') this.hpScroll(); return; }
+        if (s.item && s.item.slug === 'checkup-essential') { const st = !s.hpHosp ? 1 : 2; this.nav({ view:'pbook', pbStep:st, pbErr:'' }); return; }
+        if (!packageRowsComputed.some(r => r.selected)) return;
         this.setState(st => ({ view:'inquiry', inqStep:'addons', termsError:false, f: Object.assign({}, st.f, { cat: st.item.catSlug || 'visa' }) }), () => this.toTop());
       },
       backToDetail: () => this.setState({ view:'detail' }, () => this.toTop()),
