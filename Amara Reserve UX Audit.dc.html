@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Amara Reserve | UX Audit</title>
+<link rel="stylesheet" href="_ds/shadcn-ui-design-system-4ab00c99-6131-4511-ae70-9d07a4df1844/tokens/colors.css">
+<link rel="stylesheet" href="_ds/shadcn-ui-design-system-4ab00c99-6131-4511-ae70-9d07a4df1844/css/base.css">
+<link rel="stylesheet" href="_theme/theme.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Onest:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<script src="./doc-page.js"></script>
+<style>
+  doc-page:not(:defined){visibility:hidden}
+  body{margin:0}
+  a{color:#8A5A2B;text-decoration:underline;text-underline-offset:3px}
+  a:hover{color:#2C1E11}
+</style>
+</helmet>
+<doc-page>
+<div style="font-family:Geist,system-ui,sans-serif;color:#2C1E11;font-size:10.5pt;line-height:1.55">
+
+  <header style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:14px;border-bottom:2px solid #BF854C;margin-bottom:20px">
+    <div>
+      <div style="font-size:9pt;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#8A5A2B;margin-bottom:6px">Fluxion Technology · UX audit</div>
+      <h1 style="margin:0;font-family:Onest,sans-serif;font-size:26pt;line-height:1.1;font-weight:600;letter-spacing:-0.02em">Amara Reserve website</h1>
+      <p style="margin:6px 0 0;font-size:11pt;color:#72675D">Design critique and WCAG 2.1 AA check, scored against the 7 Key Factors of UX.</p>
+    </div>
+    <img src="./assets/amara-logo-dark.svg" alt="Amara Reserve" style="height:34px;width:auto">
+  </header>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;border:1px solid #E9E5E3;border-radius:10px;overflow:hidden;margin-bottom:24px">
+    <div style="padding:10px 14px;border-right:1px solid #E9E5E3"><div style="font-size:9pt;color:#72675D">Stage</div><div style="font-weight:600">Refinement, pre-handoff</div></div>
+    <div style="padding:10px 14px;border-right:1px solid #E9E5E3"><div style="font-size:9pt;color:#72675D">Date</div><div style="font-weight:600">6 October 2026</div></div>
+    <div style="padding:10px 14px;border-right:1px solid #E9E5E3"><div style="font-size:9pt;color:#72675D">Prepared for</div><div style="font-weight:600">Aye Myat Thuzar</div></div>
+    <div style="padding:10px 14px"><div style="font-size:9pt;color:#72675D">Status</div><div style="font-weight:600">AI-suggested, for review</div></div>
+  </div>
+
+  <section style="margin-bottom:24px">
+    <h2 style="margin:0 0 8px;font-family:Onest,sans-serif;font-size:15pt;font-weight:600">Verdict</h2>
+    <div style="padding:16px 18px;border-radius:10px;background:#F5EFE9">
+      <p style="margin:0 0 8px;font-size:12pt;font-weight:600">Ready with fixes.</p>
+      <p style="margin:0;text-wrap:pretty">The flows are clear and short: a five field inquiry, hospital first on Health Packages, and payment only after a quote or slot confirmation. The biggest risk is accessibility in the light theme: bronze text on white is 3.15:1 and form borders are 1.25:1. The biggest strength is the trust model: published hospital rates, "No payment now" on every service page, and status tracking in My Inquiries.</p>
+    </div>
+    <p style="margin:10px 0 0;font-size:9.5pt;color:#72675D;text-wrap:pretty">Scope: Home, Experiences menu, Category, Service detail, Hospital Appointment, Choose Your Doctor, Booking steps, Health Packages, Partner Hospitals, Inquiry, Inquiry received, Quote and payment, Profile, Wishlist, Thailand Hub, Help, Search and Sign in, in dark and light themes. Method: source review, contrast measured from theme tokens, preview screenshots. No screen reader session.</p>
+  </section>
+
+  <section style="margin-bottom:24px;break-inside:avoid">
+    <h2 style="margin:0 0 10px;font-family:Onest,sans-serif;font-size:15pt;font-weight:600">7 Key Factors scorecard</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px">
+      <sc-for list="{{ factors }}" as="fc" hint-placeholder-count="7">
+        <div style="border:1px solid #E9E5E3;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;break-inside:avoid">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+            <span style="font-family:Onest,sans-serif;font-weight:600;font-size:11.5pt">{{ fc.name }}</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;padding:2px 9px;border-radius:999px;font-size:8.5pt;font-weight:600;background:{{ fc.bg }};color:{{ fc.fg }}"><span style="width:7px;height:7px;border-radius:999px;background:{{ fc.dot }}"></span>{{ fc.status }}</span>
+          </div>
+          <span style="font-size:9.5pt;color:#4A3D31;text-wrap:pretty">{{ fc.note }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="margin-bottom:24px">
+    <h2 style="margin:0 0 4px;font-family:Onest,sans-serif;font-size:15pt;font-weight:600">Priority recommendations</h2>
+    <p style="margin:0 0 10px;font-size:9.5pt;color:#72675D">In order of impact. Tick when the designer approves.</p>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <sc-for list="{{ priorities }}" as="pr" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:start;padding:12px 14px;border:1px solid #E9E5E3;border-radius:10px;break-inside:avoid">
+          <span style="width:26px;height:26px;border-radius:999px;background:#2C1E11;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:10pt">{{ pr.n }}</span>
+          <div><div style="font-weight:600;margin-bottom:2px">{{ pr.title }}</div><div style="font-size:9.5pt;color:#4A3D31;text-wrap:pretty">{{ pr.body }}</div></div>
+          <span style="width:16px;height:16px;border:1.5px solid #9A8F85;border-radius:4px;margin-top:4px" aria-label="Approval checkbox"></span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="margin-bottom:24px">
+    <h2 style="margin:0 0 10px;font-family:Onest,sans-serif;font-size:15pt;font-weight:600">Usability findings</h2>
+    <div style="border:1px solid #E9E5E3;border-radius:10px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:28px minmax(0,1.4fr) 92px minmax(0,0.8fr) minmax(0,1.4fr);gap:12px;padding:8px 12px;background:#F5EFE9;font-size:8.5pt;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#72675D"><span>#</span><span>Finding</span><span>Severity</span><span>Principle</span><span>Recommendation</span></div>
+      <sc-for list="{{ usability }}" as="u" hint-placeholder-count="9">
+        <div style="display:grid;grid-template-columns:28px minmax(0,1.4fr) 92px minmax(0,0.8fr) minmax(0,1.4fr);gap:12px;padding:10px 12px;border-top:1px solid #E9E5E3;font-size:9.5pt;break-inside:avoid">
+          <span style="font-weight:600;color:#72675D">{{ u.n }}</span>
+          <span style="text-wrap:pretty">{{ u.finding }}</span>
+          <span><span style="display:inline-block;padding:2px 8px;border-radius:999px;font-size:8.5pt;font-weight:600;background:{{ u.bg }};color:{{ u.fg }}">{{ u.sev }}</span></span>
+          <span style="color:#72675D">{{ u.principle }}</span>
+          <span style="text-wrap:pretty">{{ u.fix }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="margin-bottom:24px">
+    <h2 style="margin:0 0 10px;font-family:Onest,sans-serif;font-size:15pt;font-weight:600">Accessibility findings, WCAG 2.1 AA</h2>
+    <div style="border:1px solid #E9E5E3;border-radius:10px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:28px minmax(0,1.4fr) minmax(0,0.8fr) 92px minmax(0,1.4fr);gap:12px;padding:8px 12px;background:#F5EFE9;font-size:8.5pt;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#72675D"><span>#</span><span>Issue</span><span>Criterion</span><span>Severity</span><span>Recommendation</span></div>
+      <sc-for list="{{ a11y }}" as="a" hint-placeholder-count="11">
+        <div style="display:grid;grid-template-columns:28px minmax(0,1.4fr) minmax(0,0.8fr) 92px minmax(0,1.4fr);gap:12px;padding:10px 12px;border-top:1px solid #E9E5E3;font-size:9.5pt;break-inside:avoid">
+          <span style="font-weight:600;color:#72675D">{{ a.n }}</span>
+          <span style="text-wrap:pretty">{{ a.issue }}</span>
+          <span style="color:#72675D">{{ a.crit }}</span>
+          <span><span style="display:inline-block;padding:2px 8px;border-radius:999px;font-size:8.5pt;font-weight:600;background:{{ a.bg }};color:{{ a.fg }}">{{ a.sev }}</span></span>
+          <span style="text-wrap:pretty">{{ a.fix }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="margin-bottom:24px;break-inside:avoid">
+    <h2 style="margin:0 0 4px;font-family:Onest,sans-serif;font-size:15pt;font-weight:600">Colour contrast</h2>
+    <p style="margin:0 0 10px;font-size:9.5pt;color:#72675D">Measured from the tokens in _theme/theme.css.</p>
+    <div style="border:1px solid #E9E5E3;border-radius:10px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) 70px 70px 64px;gap:12px;padding:8px 12px;background:#F5EFE9;font-size:8.5pt;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#72675D"><span>Element</span><span>Pair</span><span>Ratio</span><span>Needs</span><span>Result</span></div>
+      <sc-for list="{{ contrast }}" as="c" hint-placeholder-count="12">
+        <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) 70px 70px 64px;gap:12px;padding:8px 12px;border-top:1px solid #E9E5E3;font-size:9.5pt;align-items:center">
+          <span style="display:flex;align-items:center;gap:8px"><span style="flex:0 0 auto;width:28px;height:18px;border-radius:4px;border:1px solid #E9E5E3;background:{{ c.bgSw }};display:flex;align-items:center;justify-content:center;font-size:8pt;font-weight:700;color:{{ c.fgSw }}">Aa</span>{{ c.el }}</span>
+          <span style="color:#72675D">{{ c.pair }}</span>
+          <span style="font-weight:600;font-variant-numeric:tabular-nums">{{ c.ratio }}</span>
+          <span style="color:#72675D">{{ c.need }}</span>
+          <span style="font-weight:600;color:{{ c.resColor }}">{{ c.res }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="margin-bottom:24px">
+    <h2 style="margin:0 0 10px;font-family:Onest,sans-serif;font-size:15pt;font-weight:600">Consistency</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px">
+      <sc-for list="{{ consistency }}" as="cs" hint-placeholder-count="5">
+        <div style="border:1px solid #E9E5E3;border-radius:10px;padding:12px 14px;break-inside:avoid">
+          <div style="font-weight:600;margin-bottom:4px">{{ cs.el }}</div>
+          <div style="font-size:9.5pt;color:#4A3D31;margin-bottom:6px;text-wrap:pretty">{{ cs.issue }}</div>
+          <div style="font-size:9.5pt;text-wrap:pretty"><span style="font-weight:600;color:#8A5A2B">Fix · </span>{{ cs.fix }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="margin-bottom:24px;break-inside:avoid">
+    <h2 style="margin:0 0 10px;font-family:Onest,sans-serif;font-size:15pt;font-weight:600">What works well</h2>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <sc-for list="{{ works }}" as="w" hint-placeholder-count="6">
+        <div style="display:flex;gap:10px;align-items:flex-start"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2F7A4B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;margin-top:3px"><path d="M20 6L9 17l-5-5"></path></svg><span style="text-wrap:pretty">{{ w }}</span></div>
+      </sc-for>
+    </div>
+  </section>
+
+  <footer style="padding-top:12px;border-top:1px solid #E9E5E3;font-size:9pt;color:#72675D;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <span>Fluxion Technology · Confidential, for internal review</span>
+    <span>Findings are AI-suggested until a designer approves them. Confirm keyboard and screen reader behaviour by hand.</span>
+  </footer>
+</div>
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SEV = {
+  Critical: { bg:'#FBE9E7', fg:'#9A2A1C' },
+  Moderate: { bg:'#FBF1DE', fg:'#7A4E00' },
+  Minor: { bg:'#E7F3EC', fg:'#235C39' }
+};
+const ST = {
+  Strong: { bg:'#E7F3EC', fg:'#235C39', dot:'#2F7A4B' },
+  'At risk': { bg:'#FBF1DE', fg:'#7A4E00', dot:'#C98A12' },
+  Failing: { bg:'#FBE9E7', fg:'#9A2A1C', dot:'#C0392B' }
+};
+const sev = (n, rows) => rows.map((r, i) => Object.assign({ n: String(i + 1) }, r, SEV[r.sev]));
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      factors: [
+        { name:'Useful', status:'Strong', note:'Visa, medical and leisure for Myanmar travellers, with inquiry, quote and payment in one place.' },
+        { name:'Usable', status:'At risk', note:'Short forms and clear steps. The long Hospital Appointment panel hides its own submit button.' },
+        { name:'Findable', status:'At risk', note:'Menu, search and chips work. Partner Hospitals placement in the top menu is still open.' },
+        { name:'Credible', status:'At risk', note:'Sample doctor names, empty hospital photo slots and unapproved claims ("top-tier", "flight").' },
+        { name:'Desirable', status:'Strong', note:'Warm palette, video hero and editorial photography. The dark theme feels premium.' },
+        { name:'Accessible', status:'Failing', note:'Light theme text and border contrast, no page language, looping video with no pause.' },
+        { name:'Valuable', status:'Strong', note:'Free inquiry and payment after confirmation lower drop off and support the commission model.' }
+      ].map(f => Object.assign({}, f, ST[f.status])),
+      priorities: [
+        { n:'1', title:'Fix light theme contrast for bronze text and input borders', body:'Add a darker text token near oklch(0.5 0.1 63.9) for prices and links, keep #BF854C for fills, and raise field borders to at least 3:1. Token change only, affects every page.' },
+        { n:'2', title:'Scope add-ons and shorten the Hospital Appointment panel', body:'Remove tour ticket add-ons from non-tour pages. In the panel, show a signed-in summary with Edit details so Start an Inquiry stays in view.' },
+        { n:'3', title:'Add video pause, page language and a focus ring', body:'Pause control next to mute, set lang to my or en on switch, and a global focus-visible outline for role="button" elements.' },
+        { n:'4', title:'Announce errors and status changes', body:'Inline field errors with aria-invalid and aria-describedby, and one polite live region for "Request sent", "Added to wishlist" and similar.' },
+        { n:'5', title:'Replace placeholder content before launch', body:'Hospital approved doctor profiles, hospital photos or logos, and copy without "top-tier" or "flight" until confirmed.' }
+      ],
+      usability: sev(0, [
+        { finding:'Hospital Appointment panel grows taller than the screen once Patient Information opens, pushing Start an Inquiry below the fold.', sev:'Critical', principle:"Fitts's Law", fix:'Signed-in summary with Edit details in the panel; full form only in the step screen. Keep the button pinned.' },
+        { finding:'Generic service pages show "Add-ons for any package" with Sea Life, Safari World, dinner cruise and Ayutthaya tickets.', sev:'Critical', principle:'Relevance, credibility', fix:'Show add-ons only where the IA defines them, such as Airport pickup and Hotel on Health Packages.' },
+        { finding:'Two ways to book a hospital appointment (panel and four step screen) collect the same data.', sev:'Moderate', principle:"Hick's Law", fix:'Keep the panel as the entry point. Its Start an Inquiry already resumes at the first unfinished step.' },
+        { finding:'Service detail shows a package list with one row, the page itself, plus a quantity stepper.', sev:'Moderate', principle:'Gestalt, redundancy', fix:'Hide the list when it has one row. Ask for quantity in the inquiry form.' },
+        { finding:'Form errors are one general message with no field highlight.', sev:'Moderate', principle:'Error recovery', fix:'Message under each failing field, red border, focus moves to the first error.' },
+        { finding:'Hospital cards on Health Packages and Partner Hospitals show empty photo slots.', sev:'Moderate', principle:'Aesthetic-usability effect', fix:'Use approved logos or a neutral icon tile until photos arrive.' },
+        { finding:'Home stats bar flagged for overlapping number and label text.', sev:'Moderate', principle:'Legibility', fix:'Check at narrow widths; stack the number above the label with a gap.' },
+        { finding:'Choose Your Doctor can show up to 24 cards when no hospital is set.', sev:'Minor', principle:"Miller's Law", fix:'Default the hospital filter to field 1 and show 9 cards with Show more.' },
+        { finding:'The one hospital per inquiry rule appears only when the visitor switches hospital.', sev:'Minor', principle:'Recognition over recall', fix:'Add "One hospital per inquiry." under the Hospitals helper text.' }
+      ]),
+      a11y: sev(0, [
+        { issue:'Bronze #BF854C text on white is 3.15:1. Used for prices, Change hospital, See all doctors and kicker labels.', crit:'1.4.3 Contrast', sev:'Critical', fix:'New text token about 5:1 on white. Keep #BF854C for fills and selected states.' },
+        { issue:'Input and select borders are 1.25:1 light and 1.35:1 dark.', crit:'1.4.11 Non-text contrast', sev:'Critical', fix:'Field border token of at least 3:1 in both themes.' },
+        { issue:'Hero video autoplays and loops with mute only.', crit:'2.2.2 Pause, Stop, Hide', sev:'Critical', fix:'Pause and play button; no autoplay when reduced motion is set.' },
+        { issue:'No lang on html; Myanmar text not marked lang="my".', crit:'3.1.1 / 3.1.2 Language', sev:'Critical', fix:'Set document language on switch; mark mixed language runs.' },
+        { issue:'39 div or span role="button" elements have no focus style.', crit:'2.4.7 Focus visible', sev:'Moderate', fix:'Global [role="button"]:focus-visible outline in the ring colour.' },
+        { issue:'Quantity steppers, bell and some icon buttons are 32 by 32 px.', crit:'2.5.5 Target size (44 px team rule)', sev:'Moderate', fix:'44 by 44 hit area with padding, same visual size.' },
+        { issue:'Required fields marked with * only; no aria-required, aria-invalid or linked errors.', crit:'3.3.1, 3.3.2, 4.1.2', sev:'Moderate', fix:'required, aria-invalid on failure, aria-describedby to the message.' },
+        { issue:'Status changes are not announced; no aria-live regions.', crit:'4.1.3 Status messages', sev:'Moderate', fix:'One visually hidden polite live region for short messages.' },
+        { issue:'Sign in dialog has role="dialog" without a name; focus trap and Escape not confirmed.', crit:'4.1.2, 2.1.2', sev:'Moderate', fix:'aria-labelledby to the title, trap focus, close on Escape, return focus.' },
+        { issue:'About 40 inputs rely on wrapping labels; some search fields have placeholder only.', crit:'3.3.2 Labels', sev:'Minor', fix:'Add aria-label to header, category, hub and help search fields.' },
+        { issue:'Uppercase labels at 10 to 11 px.', crit:'1.4.4 Resize text', sev:'Minor', fix:'12 px minimum; no uppercase on Myanmar labels.' }
+      ]),
+      contrast: [
+        ['Body text, light', 'foreground on white', '16.1:1', '4.5:1', true, '#2C1E11', '#FFFFFF'],
+        ['Secondary text, light', 'muted-foreground on white', '5.5:1', '4.5:1', true, '#72675D', '#FFFFFF'],
+        ['Prices and links, light', '#BF854C on white', '3.15:1', '4.5:1', false, '#BF854C', '#FFFFFF'],
+        ['Selected chip text, light', '#BF854C on accent', '2.8:1', '4.5:1', false, '#BF854C', '#F4F3F2'],
+        ['Primary button text', 'primary-foreground on #BF854C', '5.1:1', '4.5:1', true, '#2C1E11', '#BF854C'],
+        ['Error text, light', 'destructive on white', '4.8:1', '4.5:1', true, '#D2302C', '#FFFFFF'],
+        ['Input border, light', 'input on white', '1.25:1', '3:1', false, '#E5E2DF', '#FFFFFF'],
+        ['Body text, dark', 'foreground on background', '18.6:1', '4.5:1', true, '#F9F9F9', '#191512'],
+        ['Secondary text, dark', 'muted-foreground on card', '8.6:1', '4.5:1', true, '#B8B1AA', '#1D1916'],
+        ['Prices and links, dark', '#BF854C on background', '6.3:1', '4.5:1', true, '#BF854C', '#191512'],
+        ['Input border, dark', 'input on card', '1.35:1', '3:1', false, '#36322F', '#1D1916']
+      ].map(([el, pair, ratio, need, ok, fgSw, bgSw]) => ({ el, pair, ratio, need, res: ok ? 'Pass' : 'Fail', resColor: ok ? '#235C39' : '#9A2A1C', fgSw, bgSw })),
+      consistency: [
+        { el:'Breadcrumbs', issue:'New pages use "›" with Experiences; older pages use "·" without it.', fix:'One format: Home › Experiences › Category › Page.' },
+        { el:'Small labels', issue:'Uppercase 10 to 11 px labels next to 13 to 15 px body text.', fix:'12 px minimum label size.' },
+        { el:'Price wording', issue:'"On request", "Price On request" and "From ฿x" all appear.', fix:'"From ฿x" when a price exists, otherwise "On request". Never ฿0.' },
+        { el:'Brand name', issue:'"AMARA Partner Hospitals" next to "Amara Reserve" elsewhere.', fix:'Pick one brand name across the site.' },
+        { el:'Hospital names', issue:'"Bangkok Hospital" in mockups, "Bangkok Hospital Headquarter" on the site.', fix:'Keep the shared record and confirm official names with each hospital.' }
+      ],
+      works: [
+        'Short five field inquiry and "No payment now" on every service page reduce effort and anxiety.',
+        'Hospital first selection on Health Packages and Hospital Appointment matches how patients decide.',
+        'One shared hospital record keeps names identical on every page.',
+        'Payment only after quote or slot confirmation, with clear statuses in My Inquiries.',
+        'Bilingual by default with a visible ENG and MM switch and a spoken Myanmar tone.',
+        'Reduced motion is respected, and the page has a skip link plus main, header and footer landmarks. The dark theme passes AA for all text.'
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
